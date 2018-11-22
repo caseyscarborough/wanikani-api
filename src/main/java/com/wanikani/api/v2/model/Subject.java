@@ -1,6 +1,7 @@
 package com.wanikani.api.v2.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Subject {
     private Long id;
@@ -15,8 +16,8 @@ public class Subject {
     private SubjectType type;
     private String hiddenAt;
     private List<String> partsOfSpeech;
-    private List<Integer> componentSubjectIds;
-    private List<Integer> amalgamationSubjectIds;
+    private List<Long> componentSubjectIds;
+    private List<Long> amalgamationSubjectIds;
 
     public Long getId() {
         return id;
@@ -114,19 +115,32 @@ public class Subject {
         this.partsOfSpeech = partsOfSpeech;
     }
 
-    public List<Integer> getComponentSubjectIds() {
+    public List<Long> getComponentSubjectIds() {
         return componentSubjectIds;
     }
 
-    public void setComponentSubjectIds(List<Integer> componentSubjectIds) {
+    public void setComponentSubjectIds(List<Long> componentSubjectIds) {
         this.componentSubjectIds = componentSubjectIds;
     }
 
-    public List<Integer> getAmalgamationSubjectIds() {
+    public List<Long> getAmalgamationSubjectIds() {
         return amalgamationSubjectIds;
     }
 
-    public void setAmalgamationSubjectIds(List<Integer> amalgamationSubjectIds) {
+    public void setAmalgamationSubjectIds(List<Long> amalgamationSubjectIds) {
         this.amalgamationSubjectIds = amalgamationSubjectIds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Subject subject = (Subject) o;
+        return Objects.equals(id, subject.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

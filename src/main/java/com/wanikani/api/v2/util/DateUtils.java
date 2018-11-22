@@ -7,7 +7,7 @@ import java.util.TimeZone;
 
 public class DateUtils {
 
-    public static final String ISO8601_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    public static final String ISO8601_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     public static Date getApiDate(String apiDate) {
         SimpleDateFormat format = new SimpleDateFormat(ISO8601_FORMAT);
