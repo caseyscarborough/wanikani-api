@@ -49,4 +49,11 @@ public class WaniKaniClient {
         });
         return transformer.getListData(resource);
     }
+
+    public List<SrsStage> getSrsStages() {
+        String response = client.request(BASE_URL + "/srs_stages");
+        Resource<List<SrsStage>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<SrsStage>>>() {
+        });
+        return transformer.getData(resource);
+    }
 }
