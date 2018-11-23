@@ -1,9 +1,6 @@
 package com.wanikani.api.v2.converter;
 
-import com.wanikani.api.v2.model.Resource;
-import com.wanikani.api.v2.model.Review;
-import com.wanikani.api.v2.model.Subject;
-import com.wanikani.api.v2.model.SubjectType;
+import com.wanikani.api.v2.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +11,12 @@ public class ResourceTransformer {
         T item = resource.getData();
         if (Subject.class.isAssignableFrom(item.getClass())) {
             Subject subject = (Subject) item;
-            subject.setId(resource.getId());
             subject.setType(SubjectType.findByName(resource.getObject()));
         }
 
-        if (Review.class.isAssignableFrom(item.getClass())) {
-            Review review = (Review) item;
-            review.setId(resource.getId());
+        if (Identifiable.class.isAssignableFrom(item.getClass())) {
+            Identifiable identifiable = (Identifiable) item;
+            identifiable.setId(resource.getId());
         }
         return item;
     }

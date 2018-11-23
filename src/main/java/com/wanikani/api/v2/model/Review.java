@@ -5,7 +5,7 @@ import com.wanikani.api.v2.util.DateUtils;
 import java.util.Date;
 import java.util.Objects;
 
-public class Review {
+public class Review implements Identifiable {
 
     private Long id;
     private Date createdAt;
@@ -18,10 +18,12 @@ public class Review {
     private Integer incorrectMeaningAnswers;
     private Integer incorrectReadingAnswers;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

@@ -56,4 +56,11 @@ public class WaniKaniClient {
         });
         return transformer.getData(resource);
     }
+
+    public List<Reset> getResets() {
+        String response = client.request(BASE_URL + "/resets");
+        Resource<List<Resource<Reset>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Reset>>>>() {
+        });
+        return transformer.getListData(resource);
+    }
 }

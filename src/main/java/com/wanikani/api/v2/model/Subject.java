@@ -3,7 +3,8 @@ package com.wanikani.api.v2.model;
 import java.util.List;
 import java.util.Objects;
 
-public class Subject {
+public class Subject implements Identifiable {
+
     private Long id;
     private Integer level;
     private String createdAt;
@@ -19,10 +20,12 @@ public class Subject {
     private List<Long> componentSubjectIds;
     private List<Long> amalgamationSubjectIds;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
