@@ -63,4 +63,12 @@ public class WaniKaniClient {
         });
         return transformer.getListData(resource);
     }
+
+    public List<LevelProgression> getLevelProgressions() {
+        String response = client.request(BASE_URL + "/level_progressions");
+        Resource<List<Resource<LevelProgression>>> resource =
+                jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<LevelProgression>>>>() {
+                });
+        return transformer.getListData(resource);
+    }
 }
