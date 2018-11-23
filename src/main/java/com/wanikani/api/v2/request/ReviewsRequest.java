@@ -7,22 +7,20 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static com.wanikani.api.v2.Constants.BASE_URL;
-
 public class ReviewsRequest implements Request {
 
-    private final String url;
+    private final String queryString;
 
-    public ReviewsRequest(String url) {
-        this.url = url;
+    public ReviewsRequest(String queryString) {
+        this.queryString = queryString;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public String getUrl() {
-        return url;
+    public String getQueryString() {
+        return queryString;
     }
 
     public static class Builder {
@@ -58,51 +56,50 @@ public class ReviewsRequest implements Request {
         }
 
         public ReviewsRequest build() {
-            StringBuilder url = new StringBuilder();
-            url.append(BASE_URL).append("/reviews");
+            StringBuilder queryString = new StringBuilder();
             boolean firstParameterUsed = false;
             if (!ids.isEmpty()) {
-                url.append("?ids=");
+                queryString.append("?ids=");
                 for (Integer id : ids) {
-                    url.append(id).append(",");
+                    queryString.append(id).append(",");
                 }
-                url.deleteCharAt(url.length() - 1);
+                queryString.deleteCharAt(queryString.length() - 1);
                 firstParameterUsed = true;
             }
 
             if (!assignmentIds.isEmpty()) {
-                url.append(firstParameterUsed ? "&" : "?");
-                url.append("assignment_ids=");
+                queryString.append(firstParameterUsed ? "&" : "?");
+                queryString.append("assignment_ids=");
                 for (Integer id : assignmentIds) {
-                    url.append(id).append(",");
+                    queryString.append(id).append(",");
                 }
-                url.deleteCharAt(url.length() - 1);
+                queryString.deleteCharAt(queryString.length() - 1);
                 firstParameterUsed = true;
             }
 
             if (!subjectIds.isEmpty()) {
-                url.append(firstParameterUsed ? "&" : "?");
-                url.append("subject_ids=");
+                queryString.append(firstParameterUsed ? "&" : "?");
+                queryString.append("subject_ids=");
                 for (Integer id : subjectIds) {
-                    url.append(id).append(",");
+                    queryString.append(id).append(",");
                 }
-                url.deleteCharAt(url.length() - 1);
+                queryString.deleteCharAt(queryString.length() - 1);
                 firstParameterUsed = true;
             }
 
             if (updatedAfter != null) {
-                url.append(firstParameterUsed ? "&" : "?");
-                url.append("updated_after=").append(DateUtils.getApiDate(updatedAfter));
+                queryString.append(firstParameterUsed ? "&" : "?");
+                queryString.append("updated_after=").append(DateUtils.getApiDate(updatedAfter));
                 firstParameterUsed = true;
             }
 
             if (pageAfterId != null) {
-                url.append(firstParameterUsed ? "&" : "?");
-                url.append("page_after_id=").append(pageAfterId);
+                queryString.append(firstParameterUsed ? "&" : "?");
+                queryString.append("page_after_id=").append(pageAfterId);
                 firstParameterUsed = true;
             }
 
-            return new ReviewsRequest(url.toString());
+            return new ReviewsRequest(queryString.toString());
         }
     }
 }

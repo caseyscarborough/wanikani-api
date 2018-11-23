@@ -30,7 +30,7 @@ public class WaniKaniClient {
     }
 
     public List<Subject> getSubjects(SubjectsRequest request) {
-        String response = client.request(request.getUrl());
+        String response = client.request(BASE_URL + "/subjects" + request.getQueryString());
         Resource<List<Resource<Subject>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Subject>>>>() {
         });
         return transformer.getListData(resource);
@@ -44,7 +44,7 @@ public class WaniKaniClient {
     }
 
     public List<Review> getReviews(ReviewsRequest request) {
-        String response = client.request(request.getUrl());
+        String response = client.request(BASE_URL + "/reviews" + request.getQueryString());
         Resource<List<Resource<Review>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Review>>>>() {
         });
         return transformer.getListData(resource);

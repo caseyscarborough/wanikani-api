@@ -1,6 +1,9 @@
 package com.wanikani.api.v2.converter;
 
-import com.wanikani.api.v2.model.*;
+import com.wanikani.api.v2.model.Identifiable;
+import com.wanikani.api.v2.model.Resource;
+import com.wanikani.api.v2.model.Subject;
+import com.wanikani.api.v2.model.SubjectType;
 
 import java.util.ArrayList;
 import java.util.List;
