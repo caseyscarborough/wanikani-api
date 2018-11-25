@@ -22,6 +22,13 @@ public class WaniKaniClient {
         this.transformer = new ResourceTransformer();
     }
 
+    public Summary getSummary() {
+        String response = client.request(BASE_URL + "/summary");
+        Resource<Summary> resource = jsonUtils.fromJson(response, new TypeReference<Resource<Summary>>() {
+        });
+        return transformer.getData(resource);
+    }
+
     public User getUser() {
         String response = client.request(BASE_URL + "/user");
         Resource<User> resource = jsonUtils.fromJson(response, new TypeReference<Resource<User>>() {
