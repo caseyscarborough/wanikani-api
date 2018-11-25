@@ -1,17 +1,18 @@
 package com.wanikani.api.v2.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class SummaryLesson {
 
-    private String availableAt;
+    private Date availableAt;
     private List<Integer> subjectIds;
 
-    public String getAvailableAt() {
+    public Date getAvailableAt() {
         return availableAt;
     }
 
-    public void setAvailableAt(String availableAt) {
+    public void setAvailableAt(Date availableAt) {
         this.availableAt = availableAt;
     }
 

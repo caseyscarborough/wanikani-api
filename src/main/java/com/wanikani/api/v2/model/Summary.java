@@ -1,18 +1,19 @@
 package com.wanikani.api.v2.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Summary {
 
-    private String nextReviewsAt;
+    private Date nextReviewsAt;
     private List<SummaryReview> reviews;
     private List<SummaryLesson> lessons;
 
-    public String getNextReviewsAt() {
+    public Date getNextReviewsAt() {
         return nextReviewsAt;
     }
 
-    public void setNextReviewsAt(String nextReviewsAt) {
+    public void setNextReviewsAt(Date nextReviewsAt) {
         this.nextReviewsAt = nextReviewsAt;
     }
 

@@ -1,7 +1,5 @@
 package com.wanikani.api.v2.model;
 
-import com.wanikani.api.v2.util.DateUtils;
-
 import java.util.Date;
 import java.util.Objects;
 
@@ -30,14 +28,6 @@ public class Review implements Identifiable {
 
     public Date getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        if (createdAt.contains("T")) {
-            this.createdAt = DateUtils.getApiDate(createdAt);
-        } else {
-            this.createdAt = new Date(Long.parseLong(createdAt));
-        }
     }
 
     public void setCreatedAt(Date createdAt) {

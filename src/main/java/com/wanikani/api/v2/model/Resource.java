@@ -1,11 +1,13 @@
 package com.wanikani.api.v2.model;
 
+import java.util.Date;
+
 public class Resource<T> {
 
     private Long id;
     private String object;
     private String url;
-    private String dataUpdatedAt;
+    private Date dataUpdatedAt;
     private Integer totalCount;
     private Pages pages;
     private T data;
@@ -34,11 +36,11 @@ public class Resource<T> {
         this.url = url;
     }
 
-    public String getDataUpdatedAt() {
+    public Date getDataUpdatedAt() {
         return dataUpdatedAt;
     }
 
-    public void setDataUpdatedAt(String dataUpdatedAt) {
+    public void setDataUpdatedAt(Date dataUpdatedAt) {
         this.dataUpdatedAt = dataUpdatedAt;
     }
 

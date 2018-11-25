@@ -1,14 +1,16 @@
 package com.wanikani.api.v2.model;
 
+import java.util.Date;
+
 public class LevelProgression implements Identifiable {
 
     private Long id;
-    private String createdAt;
-    private String unlockedAt;
-    private String startedAt;
-    private String passedAt;
-    private String completedAt;
-    private String abandonedAt;
+    private Date createdAt;
+    private Date unlockedAt;
+    private Date startedAt;
+    private Date passedAt;
+    private Date completedAt;
+    private Date abandonedAt;
     private Integer level;
 
     @Override
@@ -21,51 +23,51 @@ public class LevelProgression implements Identifiable {
         this.id = id;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUnlockedAt() {
+    public Date getUnlockedAt() {
         return unlockedAt;
     }
 
-    public void setUnlockedAt(String unlockedAt) {
+    public void setUnlockedAt(Date unlockedAt) {
         this.unlockedAt = unlockedAt;
     }
 
-    public String getStartedAt() {
+    public Date getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(String startedAt) {
+    public void setStartedAt(Date startedAt) {
         this.startedAt = startedAt;
     }
 
-    public String getPassedAt() {
+    public Date getPassedAt() {
         return passedAt;
     }
 
-    public void setPassedAt(String passedAt) {
+    public void setPassedAt(Date passedAt) {
         this.passedAt = passedAt;
     }
 
-    public String getCompletedAt() {
+    public Date getCompletedAt() {
         return completedAt;
     }
 
-    public void setCompletedAt(String completedAt) {
+    public void setCompletedAt(Date completedAt) {
         this.completedAt = completedAt;
     }
 
-    public String getAbandonedAt() {
+    public Date getAbandonedAt() {
         return abandonedAt;
     }
 
-    public void setAbandonedAt(String abandonedAt) {
+    public void setAbandonedAt(Date abandonedAt) {
         this.abandonedAt = abandonedAt;
     }
 

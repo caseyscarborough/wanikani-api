@@ -1,13 +1,15 @@
 package com.wanikani.api.v2.model;
 
+import java.util.Date;
+
 public class User {
 
     private String id;
     private String username;
     private Integer level;
-    private String startedAt;
+    private Date startedAt;
     private boolean subscribed;
-    private String currentVacationStartedAt;
+    private Date currentVacationStartedAt;
     private Integer maxLevelGrantedBySubscription;
 
     public String getId() {
@@ -34,11 +36,11 @@ public class User {
         this.level = level;
     }
 
-    public String getStartedAt() {
+    public Date getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(String startedAt) {
+    public void setStartedAt(Date startedAt) {
         this.startedAt = startedAt;
     }
 
@@ -50,11 +52,11 @@ public class User {
         this.subscribed = subscribed;
     }
 
-    public String getCurrentVacationStartedAt() {
+    public Date getCurrentVacationStartedAt() {
         return currentVacationStartedAt;
     }
 
-    public void setCurrentVacationStartedAt(String currentVacationStartedAt) {
+    public void setCurrentVacationStartedAt(Date currentVacationStartedAt) {
         this.currentVacationStartedAt = currentVacationStartedAt;
     }
 

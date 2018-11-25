@@ -3,18 +3,16 @@ package com.wanikani.api.v2.model;
 import java.util.Date;
 import java.util.List;
 
-import static com.wanikani.api.v2.util.DateUtils.getApiDate;
-
 public class SummaryReview {
 
-    private String availableAt;
+    private Date availableAt;
     private List<Integer> subjectIds;
 
     public Date getAvailableAt() {
-        return getApiDate(availableAt);
+        return availableAt;
     }
 
-    public void setAvailableAt(String availableAt) {
+    public void setAvailableAt(Date availableAt) {
         this.availableAt = availableAt;
     }
 

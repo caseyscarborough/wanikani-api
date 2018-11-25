@@ -1,10 +1,12 @@
 package com.wanikani.api.v2.model;
 
+import java.util.Date;
+
 public class Reset implements Identifiable {
 
     private Long id;
-    private String createdAt;
-    private String confirmedAt;
+    private Date createdAt;
+    private Date confirmedAt;
     private Integer originalLevel;
     private Integer targetLevel;
 
@@ -18,19 +20,19 @@ public class Reset implements Identifiable {
         this.id = id;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getConfirmedAt() {
+    public Date getConfirmedAt() {
         return confirmedAt;
     }
 
-    public void setConfirmedAt(String confirmedAt) {
+    public void setConfirmedAt(Date confirmedAt) {
         this.confirmedAt = confirmedAt;
     }
 
