@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
 import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
