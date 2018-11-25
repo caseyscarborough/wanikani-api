@@ -1,8 +1,6 @@
 package com.wanikani.api.v2;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.wanikani.api.v2.converter.ResourceTransformer;
-import com.wanikani.api.v2.http.HttpClient;
 import com.wanikani.api.v2.model.*;
 import com.wanikani.api.v2.request.AssignmentsRequest;
 import com.wanikani.api.v2.request.ReviewStatisticsRequest;

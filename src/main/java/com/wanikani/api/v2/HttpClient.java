@@ -1,4 +1,4 @@
-package com.wanikani.api.v2.http;
+package com.wanikani.api.v2;
 
 import com.wanikani.api.v2.exception.WaniKaniException;
 
@@ -9,15 +9,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HttpClient {
+class HttpClient {
 
     private final String apiKey;
 
-    public HttpClient(String apiKey) {
+    HttpClient(String apiKey) {
         this.apiKey = apiKey;
     }
 
-    public String request(String url) {
+    String request(String url) {
         try {
             URL obj = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) obj.openConnection();

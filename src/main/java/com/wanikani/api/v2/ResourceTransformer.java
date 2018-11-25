@@ -1,4 +1,4 @@
-package com.wanikani.api.v2.converter;
+package com.wanikani.api.v2;
 
 import com.wanikani.api.v2.model.Identifiable;
 import com.wanikani.api.v2.model.Resource;
@@ -8,9 +8,9 @@ import com.wanikani.api.v2.model.SubjectType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResourceTransformer {
+class ResourceTransformer {
 
-    public <T> T getData(Resource<T> resource) {
+    <T> T getData(Resource<T> resource) {
         T item = resource.getData();
         if (Subject.class.isAssignableFrom(item.getClass())) {
             Subject subject = (Subject) item;
@@ -24,7 +24,7 @@ public class ResourceTransformer {
         return item;
     }
 
-    public <T> List<T> getListData(Resource<List<Resource<T>>> resource) {
+    <T> List<T> getListData(Resource<List<Resource<T>>> resource) {
         List<T> output = new ArrayList<>();
         for (Resource<T> r : resource.getData()) {
             output.add(getData(r));
