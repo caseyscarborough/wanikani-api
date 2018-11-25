@@ -5,6 +5,7 @@ import com.wanikani.api.v2.converter.ResourceTransformer;
 import com.wanikani.api.v2.http.HttpClient;
 import com.wanikani.api.v2.model.*;
 import com.wanikani.api.v2.request.AssignmentsRequest;
+import com.wanikani.api.v2.request.ReviewStatisticsRequest;
 import com.wanikani.api.v2.request.ReviewsRequest;
 import com.wanikani.api.v2.request.SubjectsRequest;
 
@@ -83,6 +84,14 @@ public class WaniKaniClient {
         String response = client.request(BASE_URL + "/level_progressions");
         Resource<List<Resource<LevelProgression>>> resource =
                 jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<LevelProgression>>>>() {
+                });
+        return transformer.getListData(resource);
+    }
+
+    public List<ReviewStatistic> getReviewStatistics(ReviewStatisticsRequest request) {
+        String response = client.request(BASE_URL + "/review_statistics" + request.getQueryString());
+        Resource<List<Resource<ReviewStatistic>>> resource =
+                jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {
                 });
         return transformer.getListData(resource);
     }
