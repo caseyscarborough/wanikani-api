@@ -14,15 +14,15 @@ public enum SubjectType {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static SubjectType findByName(String name) {
         return Arrays
                 .stream(values())
                 .filter(t -> t.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public String getName() {
+        return name;
     }
 }

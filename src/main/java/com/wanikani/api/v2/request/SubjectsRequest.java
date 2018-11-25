@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static com.wanikani.api.v2.request.QueryStringUtils.append;
+import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
+import static java.util.stream.Collectors.toList;
+
 public class SubjectsRequest implements Request {
 
     private final String queryString;
@@ -23,7 +27,7 @@ public class SubjectsRequest implements Request {
     }
 
     public static class Builder {
-        private List<SubjectType> types = new ArrayList<>();
+        private List<String> types = new ArrayList<>();
         private List<Integer> levels = new ArrayList<>();
         private Long pageAfterId = null;
 
@@ -32,8 +36,13 @@ public class SubjectsRequest implements Request {
             return this;
         }
 
+        public Builder types(List<SubjectType> types) {
+            this.types = types.stream().map(SubjectType::getName).collect(toList());
+            return this;
+        }
+
         public Builder addType(SubjectType type) {
-            this.types.add(type);
+            this.types.add(type.getName());
             return this;
         }
 
@@ -50,32 +59,9 @@ public class SubjectsRequest implements Request {
 
         public SubjectsRequest build() {
             StringBuilder queryString = new StringBuilder();
-            boolean firstParameterUsed = false;
-            if (!types.isEmpty()) {
-                queryString.append("?types=");
-                for (SubjectType type : types) {
-                    queryString.append(type.getName()).append(",");
-                }
-                queryString.deleteCharAt(queryString.length() - 1);
-                firstParameterUsed = true;
-            }
-
-            if (!levels.isEmpty()) {
-                queryString.append(firstParameterUsed ? "&" : "?");
-                queryString.append("levels=");
-                for (Integer level : levels) {
-                    queryString.append(level).append(",");
-                }
-                queryString.deleteCharAt(queryString.length() - 1);
-                firstParameterUsed = true;
-            }
-
-            if (pageAfterId != null) {
-                queryString.append(firstParameterUsed ? "&" : "?");
-                queryString.append("page_after_id=").append(pageAfterId);
-                firstParameterUsed = true;
-            }
-
+            appendList(queryString, "types", types);
+            appendList(queryString, "levels", levels);
+            append(queryString, "page_after_id", pageAfterId);
             return new SubjectsRequest(queryString.toString());
         }
     }

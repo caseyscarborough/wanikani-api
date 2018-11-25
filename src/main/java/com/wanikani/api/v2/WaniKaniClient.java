@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.wanikani.api.v2.converter.ResourceTransformer;
 import com.wanikani.api.v2.http.HttpClient;
 import com.wanikani.api.v2.model.*;
+import com.wanikani.api.v2.request.AssignmentsRequest;
 import com.wanikani.api.v2.request.ReviewsRequest;
 import com.wanikani.api.v2.request.SubjectsRequest;
 
@@ -34,6 +35,13 @@ public class WaniKaniClient {
         Resource<User> resource = jsonUtils.fromJson(response, new TypeReference<Resource<User>>() {
         });
         return transformer.getData(resource);
+    }
+
+    public List<Assignment> getAssignments(AssignmentsRequest request) {
+        String response = client.request(BASE_URL + "/assignments" + request.getQueryString());
+        Resource<List<Resource<Assignment>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Assignment>>>>() {
+        });
+        return transformer.getListData(resource);
     }
 
     public List<Subject> getSubjects(SubjectsRequest request) {

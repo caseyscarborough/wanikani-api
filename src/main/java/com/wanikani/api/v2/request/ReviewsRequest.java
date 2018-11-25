@@ -1,11 +1,11 @@
 package com.wanikani.api.v2.request;
 
-import com.wanikani.api.v2.util.DateUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static com.wanikani.api.v2.request.QueryStringUtils.*;
 
 public class ReviewsRequest implements Request {
 
@@ -57,48 +57,11 @@ public class ReviewsRequest implements Request {
 
         public ReviewsRequest build() {
             StringBuilder queryString = new StringBuilder();
-            boolean firstParameterUsed = false;
-            if (!ids.isEmpty()) {
-                queryString.append("?ids=");
-                for (Integer id : ids) {
-                    queryString.append(id).append(",");
-                }
-                queryString.deleteCharAt(queryString.length() - 1);
-                firstParameterUsed = true;
-            }
-
-            if (!assignmentIds.isEmpty()) {
-                queryString.append(firstParameterUsed ? "&" : "?");
-                queryString.append("assignment_ids=");
-                for (Integer id : assignmentIds) {
-                    queryString.append(id).append(",");
-                }
-                queryString.deleteCharAt(queryString.length() - 1);
-                firstParameterUsed = true;
-            }
-
-            if (!subjectIds.isEmpty()) {
-                queryString.append(firstParameterUsed ? "&" : "?");
-                queryString.append("subject_ids=");
-                for (Integer id : subjectIds) {
-                    queryString.append(id).append(",");
-                }
-                queryString.deleteCharAt(queryString.length() - 1);
-                firstParameterUsed = true;
-            }
-
-            if (updatedAfter != null) {
-                queryString.append(firstParameterUsed ? "&" : "?");
-                queryString.append("updated_after=").append(DateUtils.getApiDate(updatedAfter));
-                firstParameterUsed = true;
-            }
-
-            if (pageAfterId != null) {
-                queryString.append(firstParameterUsed ? "&" : "?");
-                queryString.append("page_after_id=").append(pageAfterId);
-                firstParameterUsed = true;
-            }
-
+            appendList(queryString, "ids", ids);
+            appendList(queryString, "assignment_ids", assignmentIds);
+            appendList(queryString, "subject_ids", subjectIds);
+            appendDate(queryString, "updated_after", updatedAfter);
+            append(queryString, "page_after_id", pageAfterId);
             return new ReviewsRequest(queryString.toString());
         }
     }
