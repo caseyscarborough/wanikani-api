@@ -24,23 +24,23 @@ public class ReviewsRequest implements Request {
     }
 
     public static class Builder {
-        private List<Integer> ids = new ArrayList<>();
-        private List<Integer> assignmentIds = new ArrayList<>();
-        private List<Integer> subjectIds = new ArrayList<>();
+        private List<Long> ids = new ArrayList<>();
+        private List<Long> assignmentIds = new ArrayList<>();
+        private List<Long> subjectIds = new ArrayList<>();
         private Long pageAfterId;
         private Date updatedAfter;
 
-        public Builder ids(Integer... ids) {
+        public Builder ids(Long... ids) {
             this.ids = Arrays.asList(ids);
             return this;
         }
 
-        public Builder assignmentIds(Integer... ids) {
+        public Builder assignmentIds(Long... ids) {
             this.assignmentIds = Arrays.asList(ids);
             return this;
         }
 
-        public Builder subjectIds(Integer... ids) {
+        public Builder subjectIds(Long... ids) {
             this.subjectIds = Arrays.asList(ids);
             return this;
         }
