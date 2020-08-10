@@ -40,9 +40,13 @@ public class ReviewsRequest implements Request {
             return this;
         }
 
-        public Builder subjectIds(Long... ids) {
-            this.subjectIds = Arrays.asList(ids);
+        public Builder subjectIds(List<Long> ids) {
+            this.subjectIds = new ArrayList<>(ids);
             return this;
+        }
+
+        public Builder subjectIds(Long... ids) {
+            return subjectIds(Arrays.asList(ids));
         }
 
         public Builder updatedAfter(Date updatedAfter) {
