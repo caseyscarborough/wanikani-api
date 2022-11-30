@@ -34,7 +34,7 @@ class QueryStringUtils {
     }
 
     private static void appendParameter(StringBuilder queryString, String parameter) {
-        boolean firstParameterUsed = queryString.toString().startsWith("?");
+        boolean firstParameterUsed = queryString.length() > 0 && queryString.charAt(0) == '?';
         queryString
             .append(firstParameterUsed ? "&" : "?")
             .append(parameter)
