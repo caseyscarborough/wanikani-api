@@ -8,9 +8,6 @@ import com.wanikani.api.v2.request.ReviewsRequest;
 import com.wanikani.api.v2.request.SpacedRepetitionSystemsRequest;
 import com.wanikani.api.v2.request.SubjectsRequest;
 
-import java.time.Instant;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static com.wanikani.api.v2.Constants.BASE_URL;
