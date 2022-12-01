@@ -7,6 +7,7 @@ import com.wanikani.api.v2.request.ReviewStatisticsRequest;
 import com.wanikani.api.v2.request.ReviewsRequest;
 import com.wanikani.api.v2.request.SpacedRepetitionSystemsRequest;
 import com.wanikani.api.v2.request.SubjectsRequest;
+import com.wanikani.api.v2.request.VoiceActorsRequest;
 
 import java.util.List;
 
@@ -104,5 +105,24 @@ public class WaniKaniClient {
                 jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {
                 });
         return transformer.getListData(resource);
+    }
+
+    /**
+     * Get all Voice Actors matching the given query.
+     * See <a href="https://docs.api.wanikani.com/20170710/#voice-actors">WaniKani docs</a>
+     */
+    public List<VoiceActor> getVoiceActors(VoiceActorsRequest request) {
+        String response = client.request(BASE_URL + "/voice_actors" + request.getQueryString());
+        Resource<List<Resource<VoiceActor>>> resource =
+            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<VoiceActor>>>>() {
+            });
+        return transformer.getListData(resource);
+    }
+
+    /**
+     * Convenience method that gets all Voice Actors.
+     */
+    public List<VoiceActor> getVoiceActors() {
+        return getVoiceActors(VoiceActorsRequest.builder().build());
     }
 }
