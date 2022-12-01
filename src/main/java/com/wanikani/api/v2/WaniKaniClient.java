@@ -5,8 +5,12 @@ import com.wanikani.api.v2.model.*;
 import com.wanikani.api.v2.request.AssignmentsRequest;
 import com.wanikani.api.v2.request.ReviewStatisticsRequest;
 import com.wanikani.api.v2.request.ReviewsRequest;
+import com.wanikani.api.v2.request.SpacedRepetitionSystemsRequest;
 import com.wanikani.api.v2.request.SubjectsRequest;
 
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static com.wanikani.api.v2.Constants.BASE_URL;
@@ -64,11 +68,22 @@ public class WaniKaniClient {
         return transformer.getListData(resource);
     }
 
-    public List<SrsStage> getSrsStages() {
-        String response = client.request(BASE_URL + "/srs_stages");
-        Resource<List<SrsStage>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<SrsStage>>>() {
+    /**
+     * Get all Spaced Repetition Systems matching the given query.
+     * See <a href="https://docs.api.wanikani.com/20170710/#spaced-repetition-systems">WaniKani docs</a>
+     */
+    public List<SpacedRepetitionSystem> getSpacedRepetitionSystems(SpacedRepetitionSystemsRequest request) {
+        String response = client.request(BASE_URL + "/spaced_repetition_systems" + request.getQueryString());
+        Resource<List<Resource<SpacedRepetitionSystem>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<SpacedRepetitionSystem>>>>() {
         });
-        return transformer.getData(resource);
+        return transformer.getListData(resource);
+    }
+
+    /**
+     * Convenience method that gets all Spaced Repetition Systems.
+     */
+    public List<SpacedRepetitionSystem> getSpacedRepetitionSystems() {
+        return getSpacedRepetitionSystems(SpacedRepetitionSystemsRequest.builder().build());
     }
 
     public List<Reset> getResets() {

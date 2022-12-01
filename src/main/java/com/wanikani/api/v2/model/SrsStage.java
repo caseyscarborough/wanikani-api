@@ -1,41 +1,35 @@
 package com.wanikani.api.v2.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 public class SrsStage {
 
-    private Integer srsStage;
-    private String srsStageName;
-    private Long interval;
-    private Long acceleratedInterval;
+    private Integer interval;
+    private int position;
+    @JsonDeserialize(using = IntervalUnit.Deserializer.class)
+    private IntervalUnit intervalUnit;
 
-    public Integer getSrsStage() {
-        return srsStage;
-    }
-
-    public void setSrsStage(Integer srsStage) {
-        this.srsStage = srsStage;
-    }
-
-    public String getSrsStageName() {
-        return srsStageName;
-    }
-
-    public void setSrsStageName(String srsStageName) {
-        this.srsStageName = srsStageName;
-    }
-
-    public Long getInterval() {
+    public Integer getInterval() {
         return interval;
     }
 
-    public void setInterval(Long interval) {
+    public void setInterval(Integer interval) {
         this.interval = interval;
     }
 
-    public Long getAcceleratedInterval() {
-        return acceleratedInterval;
+    public int getPosition() {
+        return position;
     }
 
-    public void setAcceleratedInterval(Long acceleratedInterval) {
-        this.acceleratedInterval = acceleratedInterval;
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public IntervalUnit getIntervalUnit() {
+        return intervalUnit;
+    }
+
+    public void setIntervalUnit(IntervalUnit intervalUnit) {
+        this.intervalUnit = intervalUnit;
     }
 }
