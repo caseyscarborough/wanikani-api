@@ -16,7 +16,7 @@ public class DateUtilsTest {
         calendar.setTime(date);
         assertEquals(10, calendar.get(Calendar.MONTH));
         assertEquals(22, calendar.get(Calendar.DAY_OF_MONTH));
-        assertEquals(7, calendar.get(Calendar.HOUR_OF_DAY));
+        assertEquals(12, calendar.get(Calendar.HOUR_OF_DAY));
         assertEquals(52, calendar.get(Calendar.MINUTE));
         assertEquals(38, calendar.get(Calendar.SECOND));
         assertEquals(0, calendar.get(Calendar.MILLISECOND));
