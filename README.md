@@ -66,6 +66,7 @@ for (;;) {
     builder.pageAfterId(response.get(response.size() - 1).getId());
 }
 ```
+
 ## Issues or Contributing
 
 If you find an issue, have a question, or would like to request a feature please [open an issue](https://github.com/caseyscarborough/wanikani-api/issues).
