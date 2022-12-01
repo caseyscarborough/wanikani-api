@@ -6,6 +6,7 @@ import com.wanikani.api.v2.request.AssignmentsRequest;
 import com.wanikani.api.v2.request.ReviewStatisticsRequest;
 import com.wanikani.api.v2.request.ReviewsRequest;
 import com.wanikani.api.v2.request.SpacedRepetitionSystemsRequest;
+import com.wanikani.api.v2.request.StudyMaterialsRequest;
 import com.wanikani.api.v2.request.SubjectsRequest;
 import com.wanikani.api.v2.request.VoiceActorsRequest;
 
@@ -124,5 +125,24 @@ public class WaniKaniClient {
      */
     public List<VoiceActor> getVoiceActors() {
         return getVoiceActors(VoiceActorsRequest.builder().build());
+    }
+
+    /**
+     * Get all Study Materials matching the given query.
+     * See <a href="https://docs.api.wanikani.com/20170710/#study-materials">WaniKani docs</a>
+     */
+    public List<StudyMaterial> getStudyMaterials(StudyMaterialsRequest request) {
+        String response = client.request(BASE_URL + "/study_materials" + request.getQueryString());
+        Resource<List<Resource<StudyMaterial>>> resource =
+            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<StudyMaterial>>>>() {
+            });
+        return transformer.getListData(resource);
+    }
+
+    /**
+     * Convenience method that gets all Study Materials.
+     */
+    public List<StudyMaterial> getStudyMaterials() {
+        return getStudyMaterials(StudyMaterialsRequest.builder().build());
     }
 }

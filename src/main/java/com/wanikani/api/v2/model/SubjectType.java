@@ -1,5 +1,10 @@
 package com.wanikani.api.v2.model;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+
+import java.io.IOException;
 import java.util.Arrays;
 
 public enum SubjectType {
@@ -24,5 +29,12 @@ public enum SubjectType {
 
     public String getName() {
         return name;
+    }
+
+    public static class Deserializer extends JsonDeserializer<SubjectType> {
+        @Override
+        public SubjectType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+            return findByName(p.getValueAsString());
+        }
     }
 }
