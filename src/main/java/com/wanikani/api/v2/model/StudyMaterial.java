@@ -2,8 +2,8 @@ package com.wanikani.api.v2.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import java.util.ArrayList;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudyMaterial {

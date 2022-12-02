@@ -2,19 +2,12 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
-import java.time.Instant;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.time.ZonedDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
 import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 
 public class StudyMaterialsRequest implements Request {

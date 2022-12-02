@@ -2,15 +2,11 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
 import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 import static java.util.stream.Collectors.toList;
 
