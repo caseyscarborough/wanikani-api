@@ -12,12 +12,4 @@ public class WaniKaniException extends RuntimeException {
     public WaniKaniException(String message, Throwable cause) {
         super(message, cause);
     }
-
-    public WaniKaniException(Throwable cause) {
-        super(cause);
-    }
-
-    public WaniKaniException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }
