@@ -30,9 +30,8 @@ public class AssignmentsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder extends BaseBuilder<AssignmentsRequest, Builder> {
+    public static class Builder extends CollectionBuilder<AssignmentsRequest, Builder> {
 
-        private List<Integer> ids = new ArrayList<>();
         private List<Integer> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
         private List<Integer> levels = new ArrayList<>();
@@ -46,12 +45,6 @@ public class AssignmentsRequest implements Request {
         private ZonedDateTime createdAt;
         private ZonedDateTime availableBefore;
         private ZonedDateTime availableAfter;
-        private Long pageAfterId;
-
-        public Builder ids(Integer... ids) {
-            this.ids = Arrays.asList(ids);
-            return this;
-        }
 
         public Builder subjectIds(Integer... ids) {
             this.subjectIds = Arrays.asList(ids);
@@ -99,11 +92,6 @@ public class AssignmentsRequest implements Request {
             return createdAt(instant.atZone(ZoneOffset.UTC));
         }
 
-        public Builder pageAfterId(Long id) {
-            this.pageAfterId = id;
-            return this;
-        }
-
         public Builder srsStages(List<Integer> srsStages) {
             this.srsStages = srsStages;
             return this;
@@ -146,7 +134,6 @@ public class AssignmentsRequest implements Request {
         @Override
         public AssignmentsRequest build() {
             StringBuilder queryString = super.queryString();
-            appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "levels", levels);
             appendList(queryString, "subject_types", subjectTypes);
@@ -154,7 +141,6 @@ public class AssignmentsRequest implements Request {
             appendDate(queryString, "available_before", availableBefore);
             appendDate(queryString, "available_after", availableAfter);
             appendList(queryString, "srs_stages", srsStages);
-            append(queryString, "page_after_id", pageAfterId);
             append(queryString, "unlocked", unlocked);
             append(queryString, "started", started);
             append(queryString, "passed", passed);

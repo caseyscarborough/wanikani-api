@@ -10,6 +10,7 @@ abstract class BaseBuilder<T, B extends BaseBuilder<T, B>> {
 
     ZonedDateTime updatedAfter;
 
+    @SuppressWarnings("unchecked")
     public B updatedAfter(ZonedDateTime updatedAfter) {
         this.updatedAfter = updatedAfter;
         return (B) this;

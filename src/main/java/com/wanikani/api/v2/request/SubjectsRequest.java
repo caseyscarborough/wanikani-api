@@ -30,12 +30,11 @@ public class SubjectsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder extends BaseBuilder<SubjectsRequest, Builder> {
+    public static class Builder extends CollectionBuilder<SubjectsRequest, Builder> {
         private final List<Integer> levels = new ArrayList<>();
         private List<String> types = new ArrayList<>();
         private List<String> slugs = new ArrayList<>();
         private Boolean hidden;
-        private Long pageAfterId;
 
         public Builder slugs(List<String> slugs) {
             this.slugs = slugs;
@@ -44,11 +43,6 @@ public class SubjectsRequest implements Request {
 
         public Builder hidden(Boolean hidden) {
             this.hidden = hidden;
-            return this;
-        }
-
-        public Builder pageAfterId(Long pageAfterId) {
-            this.pageAfterId = pageAfterId;
             return this;
         }
 
@@ -78,7 +72,6 @@ public class SubjectsRequest implements Request {
             StringBuilder queryString = super.queryString();
             appendList(queryString, "types", types);
             appendList(queryString, "levels", levels);
-            append(queryString, "page_after_id", pageAfterId);
             appendList(queryString, "slugs", slugs);
             append(queryString, "hidden", hidden);
             return new SubjectsRequest(queryString.toString());

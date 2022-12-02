@@ -33,24 +33,14 @@ public class StudyMaterialsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder extends BaseBuilder<StudyMaterialsRequest, Builder> {
+    public static class Builder extends CollectionBuilder<StudyMaterialsRequest, Builder> {
         private Boolean hidden;
-        private List<Long> ids = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
 
         public Builder hidden(boolean hidden) {
             this.hidden = hidden;
             return this;
-        }
-
-        public Builder ids(List<Long> ids) {
-            this.ids = ids;
-            return this;
-        }
-
-        public Builder ids(long... ids) {
-            return ids(Arrays.stream(ids).boxed().collect(Collectors.toList()));
         }
 
         public Builder subjectIds(List<Long> subjectIds) {
@@ -75,10 +65,8 @@ public class StudyMaterialsRequest implements Request {
         public StudyMaterialsRequest build() {
             StringBuilder queryString = super.queryString();
             append(queryString, "hidden", hidden);
-            appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "subject_types", subjectTypes);
-
             return new StudyMaterialsRequest(queryString.toString());
         }
     }

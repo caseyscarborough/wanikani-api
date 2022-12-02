@@ -2,15 +2,11 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
-import java.time.Instant;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
 import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 import static java.util.stream.Collectors.toList;
 
@@ -30,24 +26,12 @@ public class ReviewStatisticsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder extends BaseBuilder<ReviewStatisticsRequest, Builder> {
-        private List<Long> ids = new ArrayList<>();
+    public static class Builder extends CollectionBuilder<ReviewStatisticsRequest, Builder> {
         private List<Long> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
         private Integer percentagesGreaterThan;
         private Integer percentagesLessThan;
         private Boolean hidden;
-        private Long pageAfterId = null;
-
-        public Builder pageAfterId(Long pageAfterId) {
-            this.pageAfterId = pageAfterId;
-            return this;
-        }
-
-        public Builder ids(List<Long> ids) {
-            this.ids = ids;
-            return this;
-        }
 
         public Builder subjectIds(List<Long> subjectIds) {
             this.subjectIds = subjectIds;
@@ -81,10 +65,8 @@ public class ReviewStatisticsRequest implements Request {
         @Override
         public ReviewStatisticsRequest build() {
             StringBuilder queryString = super.queryString();
-            appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "subject_types", subjectTypes);
-            append(queryString, "page_after_id", pageAfterId);
             append(queryString, "percentages_greater_than", percentagesGreaterThan);
             append(queryString, "percentages_less_than", percentagesLessThan);
             append(queryString, "hidden", hidden);
