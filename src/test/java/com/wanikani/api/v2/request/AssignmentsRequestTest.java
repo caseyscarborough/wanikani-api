@@ -1,6 +1,6 @@
 package com.wanikani.api.v2.request;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 
 import static com.wanikani.api.v2.model.SubjectType.KANJI;
 import static com.wanikani.api.v2.model.SubjectType.RADICAL;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AssignmentsRequestTest {
 
