@@ -12,6 +12,7 @@ abstract class CollectionBuilder<T, B extends CollectionBuilder<T, B>> extends B
 
     private List<Long> ids = new ArrayList<>();
     private Long pageAfterId;
+    private Integer perPage;
 
     public B ids(Long... ids) {
         return ids(Arrays.asList(ids));
@@ -37,11 +38,18 @@ abstract class CollectionBuilder<T, B extends CollectionBuilder<T, B>> extends B
         return (B) this;
     }
 
+    @SuppressWarnings("unchecked")
+    public B perPage(Integer perPage) {
+        this.perPage = perPage;
+        return (B) this;
+    }
+
     @Override
     StringBuilder queryString() {
         StringBuilder queryString = super.queryString();
         appendList(queryString, "ids", ids);
         append(queryString, "page_after_id", pageAfterId);
+        append(queryString, "per_page", perPage);
         return queryString;
     }
 }
