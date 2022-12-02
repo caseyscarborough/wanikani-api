@@ -16,10 +16,10 @@ public enum SubjectType {
 
     public static SubjectType findByName(String name) {
         return Arrays
-                .stream(values())
-                .filter(t -> t.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+            .stream(values())
+            .filter(t -> t.getName().equalsIgnoreCase(name))
+            .findFirst()
+            .orElse(null);
     }
 
     public String getName() {

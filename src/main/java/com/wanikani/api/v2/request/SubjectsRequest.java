@@ -30,7 +30,7 @@ public class SubjectsRequest implements Request {
 
     public static class Builder {
         private List<String> types = new ArrayList<>();
-        private List<Integer> levels = new ArrayList<>();
+        private final List<Integer> levels = new ArrayList<>();
         private List<String> slugs = new ArrayList<>();
         private Boolean hidden;
         private Date updatedAfter;

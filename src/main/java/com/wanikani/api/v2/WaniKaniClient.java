@@ -1,7 +1,16 @@
 package com.wanikani.api.v2;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.wanikani.api.v2.model.*;
+import com.wanikani.api.v2.model.Assignment;
+import com.wanikani.api.v2.model.LevelProgression;
+import com.wanikani.api.v2.model.Reset;
+import com.wanikani.api.v2.model.Resource;
+import com.wanikani.api.v2.model.Review;
+import com.wanikani.api.v2.model.ReviewStatistic;
+import com.wanikani.api.v2.model.SpacedRepetitionSystem;
+import com.wanikani.api.v2.model.Subject;
+import com.wanikani.api.v2.model.Summary;
+import com.wanikani.api.v2.model.User;
 import com.wanikani.api.v2.request.AssignmentsRequest;
 import com.wanikani.api.v2.request.ReviewStatisticsRequest;
 import com.wanikani.api.v2.request.ReviewsRequest;
@@ -93,16 +102,16 @@ public class WaniKaniClient {
     public List<LevelProgression> getLevelProgressions() {
         String response = client.request(BASE_URL + "/level_progressions");
         Resource<List<Resource<LevelProgression>>> resource =
-                jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<LevelProgression>>>>() {
-                });
+            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<LevelProgression>>>>() {
+            });
         return transformer.getListData(resource);
     }
 
     public List<ReviewStatistic> getReviewStatistics(ReviewStatisticsRequest request) {
         String response = client.request(BASE_URL + "/review_statistics" + request.getQueryString());
         Resource<List<Resource<ReviewStatistic>>> resource =
-                jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {
-                });
+            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {
+            });
         return transformer.getListData(resource);
     }
 }

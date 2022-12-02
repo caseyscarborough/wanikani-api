@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.*;
+import static com.wanikani.api.v2.request.QueryStringUtils.append;
+import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
+import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 import static java.util.stream.Collectors.toList;
 
 public class AssignmentsRequest implements Request {
