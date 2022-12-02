@@ -39,45 +39,36 @@ public class WaniKaniClient {
     }
 
     public Summary getSummary() {
-        String response = client.get("/summary");
-        Resource<Summary> resource = jsonUtils.fromJson(response, new TypeReference<Resource<Summary>>() {
-        });
-        return transformer.getData(resource);
+        return getObject("/summary", new TypeReference<Resource<Summary>>() {});
     }
 
     public User getUser() {
-        String response = client.get("/user");
-        Resource<User> resource = jsonUtils.fromJson(response, new TypeReference<Resource<User>>() {
-        });
-        return transformer.getData(resource);
+        return getObject("/user", new TypeReference<Resource<User>>() {});
     }
 
     public List<Assignment> getAssignments(AssignmentsRequest request) {
-        String response = client.get("/assignments" + request.getQueryString());
-        Resource<List<Resource<Assignment>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Assignment>>>>() {
-        });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/assignments" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<Assignment>>>>() {}
+        );
     }
 
     public List<Subject> getSubjects(SubjectsRequest request) {
-        String response = client.get("/subjects" + request.getQueryString());
-        Resource<List<Resource<Subject>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Subject>>>>() {
-        });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/subjects" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<Subject>>>>() {}
+        );
     }
 
     public Subject getSubject(Integer id) {
-        String response = client.get("/subjects/" + id);
-        Resource<Subject> resource = jsonUtils.fromJson(response, new TypeReference<Resource<Subject>>() {
-        });
-        return transformer.getData(resource);
+        return getObject("/subjects/" + id, new TypeReference<Resource<Subject>>() {});
     }
 
     public List<Review> getReviews(ReviewsRequest request) {
-        String response = client.get("/reviews" + request.getQueryString());
-        Resource<List<Resource<Review>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Review>>>>() {
-        });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/reviews" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<Review>>>>() {}
+        );
     }
 
     /**
@@ -85,10 +76,10 @@ public class WaniKaniClient {
      * See <a href="https://docs.api.wanikani.com/20170710/#spaced-repetition-systems">WaniKani docs</a>
      */
     public List<SpacedRepetitionSystem> getSpacedRepetitionSystems(SpacedRepetitionSystemsRequest request) {
-        String response = client.get("/spaced_repetition_systems" + request.getQueryString());
-        Resource<List<Resource<SpacedRepetitionSystem>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<SpacedRepetitionSystem>>>>() {
-        });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/spaced_repetition_systems" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<SpacedRepetitionSystem>>>>() {}
+        );
     }
 
     /**
@@ -99,26 +90,24 @@ public class WaniKaniClient {
     }
 
     public List<Reset> getResets() {
-        String response = client.get("/resets");
-        Resource<List<Resource<Reset>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Reset>>>>() {
-        });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/resets",
+            new TypeReference<Resource<List<Resource<Reset>>>>() {}
+        );
     }
 
     public List<LevelProgression> getLevelProgressions() {
-        String response = client.get("/level_progressions");
-        Resource<List<Resource<LevelProgression>>> resource =
-            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<LevelProgression>>>>() {
-            });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/level_progressions",
+            new TypeReference<Resource<List<Resource<LevelProgression>>>>() {}
+        );
     }
 
     public List<ReviewStatistic> getReviewStatistics(ReviewStatisticsRequest request) {
-        String response = client.get("/review_statistics" + request.getQueryString());
-        Resource<List<Resource<ReviewStatistic>>> resource =
-            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {
-            });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/review_statistics" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {}
+        );
     }
 
     /**
@@ -126,11 +115,10 @@ public class WaniKaniClient {
      * See <a href="https://docs.api.wanikani.com/20170710/#voice-actors">WaniKani docs</a>
      */
     public List<VoiceActor> getVoiceActors(VoiceActorsRequest request) {
-        String response = client.get("/voice_actors" + request.getQueryString());
-        Resource<List<Resource<VoiceActor>>> resource =
-            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<VoiceActor>>>>() {
-            });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/voice_actors" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<VoiceActor>>>>() {}
+        );
     }
 
     /**
@@ -145,11 +133,10 @@ public class WaniKaniClient {
      * See <a href="https://docs.api.wanikani.com/20170710/#study-materials">WaniKani docs</a>
      */
     public List<StudyMaterial> getStudyMaterials(StudyMaterialsRequest request) {
-        String response = client.get("/study_materials" + request.getQueryString());
-        Resource<List<Resource<StudyMaterial>>> resource =
-            jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<StudyMaterial>>>>() {
-            });
-        return transformer.getListData(resource);
+        return getCollection(
+            "/study_materials" + request.getQueryString(),
+            new TypeReference<Resource<List<Resource<StudyMaterial>>>>() {}
+        );
     }
 
     /**
@@ -157,5 +144,17 @@ public class WaniKaniClient {
      */
     public List<StudyMaterial> getStudyMaterials() {
         return getStudyMaterials(StudyMaterialsRequest.builder().build());
+    }
+
+    private <T> T getObject(final String path, TypeReference<Resource<T>> reference) {
+        String response = client.get(path);
+        Resource<T> resource = jsonUtils.fromJson(response, reference);
+        return transformer.getData(resource);
+    }
+
+    private <T> List<T> getCollection(final String path, TypeReference<Resource<List<Resource<T>>>> reference) {
+        String response = client.get(path);
+        Resource<List<Resource<T>>> resource = jsonUtils.fromJson(response, reference);
+        return transformer.getListData(resource);
     }
 }
