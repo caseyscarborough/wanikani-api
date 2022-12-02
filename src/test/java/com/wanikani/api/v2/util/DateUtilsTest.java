@@ -2,8 +2,10 @@ package com.wanikani.api.v2.util;
 
 import org.junit.Test;
 
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +15,7 @@ public class DateUtilsTest {
     public void testGetApiDate() {
         Date date = DateUtils.getApiDate("2018-11-22T12:52:38.861676Z");
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone(ZoneId.of("UTC")));
         calendar.setTime(date);
         assertEquals(10, calendar.get(Calendar.MONTH));
         assertEquals(22, calendar.get(Calendar.DAY_OF_MONTH));
