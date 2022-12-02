@@ -3,6 +3,7 @@ package com.wanikani.api.v2.model;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,6 +12,7 @@ public enum Gender {
     MALE("male"),
     FEMALE("female");
 
+    @Getter
     private final String name;
 
     Gender(String name) {
@@ -23,10 +25,6 @@ public enum Gender {
             .filter(t -> t.getName().equalsIgnoreCase(name))
             .findFirst()
             .orElse(null);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public static class Deserializer extends JsonDeserializer<Gender> {

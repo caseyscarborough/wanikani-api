@@ -3,6 +3,7 @@ package com.wanikani.api.v2.model;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ public enum SubjectType {
     KANJI("kanji"),
     VOCABULARY("vocabulary");
 
+    @Getter
     private final String name;
 
     SubjectType(String name) {
@@ -25,10 +27,6 @@ public enum SubjectType {
             .filter(t -> t.getName().equalsIgnoreCase(name))
             .findFirst()
             .orElse(null);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public static class Deserializer extends JsonDeserializer<SubjectType> {
