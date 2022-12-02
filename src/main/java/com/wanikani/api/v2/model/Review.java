@@ -1,12 +1,12 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 public class Review implements Identifiable {
 
     private Long id;
-    private Date createdAt;
+    private ZonedDateTime createdAt;
     private Long assignmentId;
     private Integer subjectId;
     private Integer startingSrsStage;
@@ -26,11 +26,11 @@ public class Review implements Identifiable {
         this.id = id;
     }
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

@@ -4,15 +4,10 @@ import com.wanikani.api.v2.model.SubjectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
 import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 
 public class StudyMaterialsRequest implements Request {
@@ -31,25 +26,14 @@ public class StudyMaterialsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends CollectionBuilder<StudyMaterialsRequest, Builder> {
         private Boolean hidden;
-        private List<Long> ids = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
-        private Date updatedAfter;
 
         public Builder hidden(boolean hidden) {
             this.hidden = hidden;
             return this;
-        }
-
-        public Builder ids(List<Long> ids) {
-            this.ids = ids;
-            return this;
-        }
-
-        public Builder ids(long... ids) {
-            return ids(Arrays.stream(ids).boxed().collect(Collectors.toList()));
         }
 
         public Builder subjectIds(List<Long> subjectIds) {
@@ -70,19 +54,12 @@ public class StudyMaterialsRequest implements Request {
             return subjectTypes(Arrays.stream(subjectTypes).collect(Collectors.toList()));
         }
 
-        public Builder updatedAfter(Date updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
-        }
-
+        @Override
         public StudyMaterialsRequest build() {
-            StringBuilder queryString = new StringBuilder();
+            StringBuilder queryString = super.queryString();
             append(queryString, "hidden", hidden);
-            appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "subject_types", subjectTypes);
-            appendDate(queryString, "updated_after", updatedAfter);
-
             return new StudyMaterialsRequest(queryString.toString());
         }
     }

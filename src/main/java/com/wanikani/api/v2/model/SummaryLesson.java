@@ -1,18 +1,18 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class SummaryLesson {
 
-    private Date availableAt;
+    private ZonedDateTime availableAt;
     private List<Integer> subjectIds;
 
-    public Date getAvailableAt() {
+    public ZonedDateTime getAvailableAt() {
         return availableAt;
     }
 
-    public void setAvailableAt(Date availableAt) {
+    public void setAvailableAt(ZonedDateTime availableAt) {
         this.availableAt = availableAt;
     }
 

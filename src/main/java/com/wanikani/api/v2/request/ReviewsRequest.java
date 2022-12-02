@@ -2,11 +2,8 @@ package com.wanikani.api.v2.request;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
 import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 
 public class ReviewsRequest implements Request {
@@ -25,17 +22,9 @@ public class ReviewsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
-        private List<Long> ids = new ArrayList<>();
+    public static class Builder extends CollectionBuilder<ReviewsRequest, Builder> {
         private List<Long> assignmentIds = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
-        private Long pageAfterId;
-        private Date updatedAfter;
-
-        public Builder ids(Long... ids) {
-            this.ids = Arrays.asList(ids);
-            return this;
-        }
 
         public Builder assignmentIds(Long... ids) {
             this.assignmentIds = Arrays.asList(ids);
@@ -51,23 +40,11 @@ public class ReviewsRequest implements Request {
             return subjectIds(Arrays.asList(ids));
         }
 
-        public Builder updatedAfter(Date updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
-        }
-
-        public Builder pageAfterId(Long id) {
-            this.pageAfterId = id;
-            return this;
-        }
-
+        @Override
         public ReviewsRequest build() {
-            StringBuilder queryString = new StringBuilder();
-            appendList(queryString, "ids", ids);
+            StringBuilder queryString = super.queryString();
             appendList(queryString, "assignment_ids", assignmentIds);
             appendList(queryString, "subject_ids", subjectIds);
-            appendDate(queryString, "updated_after", updatedAfter);
-            append(queryString, "page_after_id", pageAfterId);
             return new ReviewsRequest(queryString.toString());
         }
     }

@@ -1,13 +1,13 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class Resource<T> {
 
     private Long id;
     private String object;
     private String url;
-    private Date dataUpdatedAt;
+    private ZonedDateTime dataUpdatedAt;
     private Integer totalCount;
     private Pages pages;
     private T data;
@@ -36,11 +36,11 @@ public class Resource<T> {
         this.url = url;
     }
 
-    public Date getDataUpdatedAt() {
+    public ZonedDateTime getDataUpdatedAt() {
         return dataUpdatedAt;
     }
 
-    public void setDataUpdatedAt(Date dataUpdatedAt) {
+    public void setDataUpdatedAt(ZonedDateTime dataUpdatedAt) {
         this.dataUpdatedAt = dataUpdatedAt;
     }
 

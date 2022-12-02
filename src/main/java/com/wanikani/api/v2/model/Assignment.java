@@ -1,17 +1,17 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class Assignment implements Identifiable {
 
     private Long id;
-    private Date createdAt;
-    private Date unlockedAt;
-    private Date startedAt;
-    private Date passedAt;
-    private Date burnedAt;
-    private Date availableAt;
-    private Date resurrectedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime unlockedAt;
+    private ZonedDateTime startedAt;
+    private ZonedDateTime passedAt;
+    private ZonedDateTime burnedAt;
+    private ZonedDateTime availableAt;
+    private ZonedDateTime resurrectedAt;
     private Long subjectId;
     private String subjectType;
     private Integer srsStage;
@@ -30,59 +30,59 @@ public class Assignment implements Identifiable {
         this.id = id;
     }
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUnlockedAt() {
+    public ZonedDateTime getUnlockedAt() {
         return unlockedAt;
     }
 
-    public void setUnlockedAt(Date unlockedAt) {
+    public void setUnlockedAt(ZonedDateTime unlockedAt) {
         this.unlockedAt = unlockedAt;
     }
 
-    public Date getStartedAt() {
+    public ZonedDateTime getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(Date startedAt) {
+    public void setStartedAt(ZonedDateTime startedAt) {
         this.startedAt = startedAt;
     }
 
-    public Date getPassedAt() {
+    public ZonedDateTime getPassedAt() {
         return passedAt;
     }
 
-    public void setPassedAt(Date passedAt) {
+    public void setPassedAt(ZonedDateTime passedAt) {
         this.passedAt = passedAt;
     }
 
-    public Date getBurnedAt() {
+    public ZonedDateTime getBurnedAt() {
         return burnedAt;
     }
 
-    public void setBurnedAt(Date burnedAt) {
+    public void setBurnedAt(ZonedDateTime burnedAt) {
         this.burnedAt = burnedAt;
     }
 
-    public Date getAvailableAt() {
+    public ZonedDateTime getAvailableAt() {
         return availableAt;
     }
 
-    public void setAvailableAt(Date availableAt) {
+    public void setAvailableAt(ZonedDateTime availableAt) {
         this.availableAt = availableAt;
     }
 
-    public Date getResurrectedAt() {
+    public ZonedDateTime getResurrectedAt() {
         return resurrectedAt;
     }
 
-    public void setResurrectedAt(Date resurrectedAt) {
+    public void setResurrectedAt(ZonedDateTime resurrectedAt) {
         this.resurrectedAt = resurrectedAt;
     }
 

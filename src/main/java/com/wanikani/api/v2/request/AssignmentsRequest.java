@@ -2,9 +2,12 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
@@ -28,9 +31,8 @@ public class AssignmentsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends CollectionBuilder<AssignmentsRequest, Builder> {
 
-        private List<Integer> ids = new ArrayList<>();
         private List<Integer> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
         private List<Integer> levels = new ArrayList<>();
@@ -41,16 +43,9 @@ public class AssignmentsRequest implements Request {
         private Boolean burned;
         private Boolean resurrected;
         private Boolean hidden;
-        private Date createdAt;
-        private Date availableBefore;
-        private Date availableAfter;
-        private Long pageAfterId;
-        private Date updatedAfter;
-
-        public Builder ids(Integer... ids) {
-            this.ids = Arrays.asList(ids);
-            return this;
-        }
+        private ZonedDateTime createdAt;
+        private ZonedDateTime availableBefore;
+        private ZonedDateTime availableAfter;
 
         public Builder subjectIds(Integer... ids) {
             this.subjectIds = Arrays.asList(ids);
@@ -71,29 +66,43 @@ public class AssignmentsRequest implements Request {
             return subjectTypes(Arrays.asList(subjectTypes));
         }
 
-        public Builder availableBefore(Date availableBefore) {
+        public Builder availableBefore(ZonedDateTime availableBefore) {
             this.availableBefore = availableBefore;
             return this;
         }
 
-        public Builder availableAfter(Date availableAfter) {
+        public Builder availableBefore(Instant availableBefore) {
+            return availableBefore(availableBefore.atZone(ZoneOffset.UTC));
+        }
+
+        public Builder availableBefore(OffsetDateTime availableBefore) {
+            return availableBefore(availableBefore.toZonedDateTime());
+        }
+
+        public Builder availableAfter(ZonedDateTime availableAfter) {
             this.availableAfter = availableAfter;
             return this;
         }
 
-        public Builder updatedAfter(Date updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
+        public Builder availableAfter(Instant availableAfter) {
+            return availableAfter(availableAfter.atZone(ZoneOffset.UTC));
         }
 
-        public Builder createdAt(Date createdAt) {
+        public Builder availableAfter(OffsetDateTime availableAfter) {
+            return availableBefore(availableAfter.toZonedDateTime());
+        }
+
+        public Builder createdAt(ZonedDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-        public Builder pageAfterId(Long id) {
-            this.pageAfterId = id;
-            return this;
+        public Builder createdAt(Instant createdAt) {
+            return createdAt(createdAt.atZone(ZoneOffset.UTC));
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            return createdAt(createdAt.toZonedDateTime());
         }
 
         public Builder srsStages(List<Integer> srsStages) {
@@ -135,18 +144,16 @@ public class AssignmentsRequest implements Request {
             return this;
         }
 
+        @Override
         public AssignmentsRequest build() {
-            StringBuilder queryString = new StringBuilder();
-            appendList(queryString, "ids", ids);
+            StringBuilder queryString = super.queryString();
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "levels", levels);
             appendList(queryString, "subject_types", subjectTypes);
-            appendDate(queryString, "updated_after", updatedAfter);
             appendDate(queryString, "created_at", createdAt);
             appendDate(queryString, "available_before", availableBefore);
             appendDate(queryString, "available_after", availableAfter);
             appendList(queryString, "srs_stages", srsStages);
-            append(queryString, "page_after_id", pageAfterId);
             append(queryString, "unlocked", unlocked);
             append(queryString, "started", started);
             append(queryString, "passed", passed);

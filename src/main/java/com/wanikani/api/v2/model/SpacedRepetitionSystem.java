@@ -1,11 +1,11 @@
 package com.wanikani.api.v2.model;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SpacedRepetitionSystem {
-    private Date createdAt;
+    private ZonedDateTime createdAt;
     private String name;
     private String description;
     private int unlockingStagePosition;
@@ -14,11 +14,11 @@ public class SpacedRepetitionSystem {
     private int burningStagePosition;
     private List<SrsStage> stages = new ArrayList<>();
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

@@ -2,13 +2,13 @@ package com.wanikani.api.v2.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class StudyMaterial {
 
-    private Date createdAt;
+    private ZonedDateTime createdAt;
     private boolean hidden;
     private String meaningNote;
     private List<String> meaningSynonyms = new ArrayList<>();
@@ -17,11 +17,11 @@ public class StudyMaterial {
     @JsonDeserialize(using = SubjectType.Deserializer.class)
     private SubjectType subjectType;
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

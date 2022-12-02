@@ -1,19 +1,19 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class Summary {
 
-    private Date nextReviewsAt;
+    private ZonedDateTime nextReviewsAt;
     private List<SummaryReview> reviews;
     private List<SummaryLesson> lessons;
 
-    public Date getNextReviewsAt() {
+    public ZonedDateTime getNextReviewsAt() {
         return nextReviewsAt;
     }
 
-    public void setNextReviewsAt(Date nextReviewsAt) {
+    public void setNextReviewsAt(ZonedDateTime nextReviewsAt) {
         this.nextReviewsAt = nextReviewsAt;
     }
 

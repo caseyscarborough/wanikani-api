@@ -1,16 +1,16 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class LevelProgression implements Identifiable {
 
     private Long id;
-    private Date createdAt;
-    private Date unlockedAt;
-    private Date startedAt;
-    private Date passedAt;
-    private Date completedAt;
-    private Date abandonedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime unlockedAt;
+    private ZonedDateTime startedAt;
+    private ZonedDateTime passedAt;
+    private ZonedDateTime completedAt;
+    private ZonedDateTime abandonedAt;
     private Integer level;
 
     @Override
@@ -23,51 +23,51 @@ public class LevelProgression implements Identifiable {
         this.id = id;
     }
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUnlockedAt() {
+    public ZonedDateTime getUnlockedAt() {
         return unlockedAt;
     }
 
-    public void setUnlockedAt(Date unlockedAt) {
+    public void setUnlockedAt(ZonedDateTime unlockedAt) {
         this.unlockedAt = unlockedAt;
     }
 
-    public Date getStartedAt() {
+    public ZonedDateTime getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(Date startedAt) {
+    public void setStartedAt(ZonedDateTime startedAt) {
         this.startedAt = startedAt;
     }
 
-    public Date getPassedAt() {
+    public ZonedDateTime getPassedAt() {
         return passedAt;
     }
 
-    public void setPassedAt(Date passedAt) {
+    public void setPassedAt(ZonedDateTime passedAt) {
         this.passedAt = passedAt;
     }
 
-    public Date getCompletedAt() {
+    public ZonedDateTime getCompletedAt() {
         return completedAt;
     }
 
-    public void setCompletedAt(Date completedAt) {
+    public void setCompletedAt(ZonedDateTime completedAt) {
         this.completedAt = completedAt;
     }
 
-    public Date getAbandonedAt() {
+    public ZonedDateTime getAbandonedAt() {
         return abandonedAt;
     }
 
-    public void setAbandonedAt(Date abandonedAt) {
+    public void setAbandonedAt(ZonedDateTime abandonedAt) {
         this.abandonedAt = abandonedAt;
     }
 

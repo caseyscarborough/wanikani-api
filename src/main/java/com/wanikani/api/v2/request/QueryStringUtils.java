@@ -2,7 +2,7 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.util.DateUtils;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 class QueryStringUtils {
@@ -26,7 +26,7 @@ class QueryStringUtils {
         queryString.deleteCharAt(queryString.length() - 1);
     }
 
-    public static void appendDate(StringBuilder queryString, String parameter, Date date) {
+    public static void appendDate(StringBuilder queryString, String parameter, ZonedDateTime date) {
         if (date == null) {
             return;
         }
