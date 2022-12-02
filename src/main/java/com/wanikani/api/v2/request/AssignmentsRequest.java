@@ -3,6 +3,7 @@ package com.wanikani.api.v2.request;
 import com.wanikani.api.v2.model.SubjectType;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -70,8 +71,12 @@ public class AssignmentsRequest implements Request {
             return this;
         }
 
-        public Builder availableBefore(Instant instant) {
-            return availableBefore(instant.atZone(ZoneOffset.UTC));
+        public Builder availableBefore(Instant availableBefore) {
+            return availableBefore(availableBefore.atZone(ZoneOffset.UTC));
+        }
+
+        public Builder availableBefore(OffsetDateTime availableBefore) {
+            return availableBefore(availableBefore.toZonedDateTime());
         }
 
         public Builder availableAfter(ZonedDateTime availableAfter) {
@@ -79,8 +84,12 @@ public class AssignmentsRequest implements Request {
             return this;
         }
 
-        public Builder availableAfter(Instant instant) {
-            return availableAfter(instant.atZone(ZoneOffset.UTC));
+        public Builder availableAfter(Instant availableAfter) {
+            return availableAfter(availableAfter.atZone(ZoneOffset.UTC));
+        }
+
+        public Builder availableAfter(OffsetDateTime availableAfter) {
+            return availableBefore(availableAfter.toZonedDateTime());
         }
 
         public Builder createdAt(ZonedDateTime createdAt) {
@@ -88,8 +97,12 @@ public class AssignmentsRequest implements Request {
             return this;
         }
 
-        public Builder createdAt(Instant instant) {
-            return createdAt(instant.atZone(ZoneOffset.UTC));
+        public Builder createdAt(Instant createdAt) {
+            return createdAt(createdAt.atZone(ZoneOffset.UTC));
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            return createdAt(createdAt.toZonedDateTime());
         }
 
         public Builder srsStages(List<Integer> srsStages) {
