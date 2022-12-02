@@ -2,26 +2,32 @@ package com.wanikani.api.v2.util;
 
 import org.junit.Test;
 
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoField;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class DateUtilsTest {
 
     @Test
-    public void testGetApiDate() {
-        Date date = DateUtils.getApiDate("2018-11-22T12:52:38.861676Z");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(TimeZone.getTimeZone(ZoneId.of("UTC")));
-        calendar.setTime(date);
-        assertEquals(10, calendar.get(Calendar.MONTH));
-        assertEquals(22, calendar.get(Calendar.DAY_OF_MONTH));
-        assertEquals(12, calendar.get(Calendar.HOUR_OF_DAY));
-        assertEquals(52, calendar.get(Calendar.MINUTE));
-        assertEquals(38, calendar.get(Calendar.SECOND));
-        assertEquals(0, calendar.get(Calendar.MILLISECOND));
+    public void testDeserialization() {
+        final LocalDateTime date = DateUtils.getApiDate("2022-10-07T00:42:53.811877Z");
+        assertEquals(2022, date.get(ChronoField.YEAR));
+        assertEquals(10, date.get(ChronoField.MONTH_OF_YEAR));
+        assertEquals(7, date.get(ChronoField.DAY_OF_MONTH));
+        assertEquals(0, date.get(ChronoField.HOUR_OF_DAY));
+        assertEquals(42, date.get(ChronoField.MINUTE_OF_HOUR));
+        assertEquals(53, date.get(ChronoField.SECOND_OF_MINUTE));
+        assertEquals(811, date.get(ChronoField.MILLI_OF_SECOND));
+    }
+
+    @Test
+    public void testSerialization() {
+        LocalDateTime time = Instant.ofEpochMilli(1667431825313L).atZone(ZoneOffset.UTC).toLocalDateTime();
+        String result = DateUtils.getApiDate(time);
+        System.out.println(result);
+        assertEquals("2022-11-02T23:30:25.313Z", result);
     }
 }

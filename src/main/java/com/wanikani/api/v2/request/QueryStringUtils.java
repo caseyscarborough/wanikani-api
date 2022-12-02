@@ -2,10 +2,12 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.util.DateUtils;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 class QueryStringUtils {
+
 
     public static <T> void append(StringBuilder queryString, String parameter, T value) {
         if (value == null) {
@@ -26,7 +28,7 @@ class QueryStringUtils {
         queryString.deleteCharAt(queryString.length() - 1);
     }
 
-    public static void appendDate(StringBuilder queryString, String parameter, Date date) {
+    public static void appendDate(StringBuilder queryString, String parameter, LocalDateTime date) {
         if (date == null) {
             return;
         }

@@ -1,17 +1,17 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Assignment implements Identifiable {
 
     private Long id;
-    private Date createdAt;
-    private Date unlockedAt;
-    private Date startedAt;
-    private Date passedAt;
-    private Date burnedAt;
-    private Date availableAt;
-    private Date resurrectedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime unlockedAt;
+    private LocalDateTime startedAt;
+    private LocalDateTime passedAt;
+    private LocalDateTime burnedAt;
+    private LocalDateTime availableAt;
+    private LocalDateTime resurrectedAt;
     private Long subjectId;
     private String subjectType;
     private Integer srsStage;
@@ -30,59 +30,59 @@ public class Assignment implements Identifiable {
         this.id = id;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUnlockedAt() {
+    public LocalDateTime getUnlockedAt() {
         return unlockedAt;
     }
 
-    public void setUnlockedAt(Date unlockedAt) {
+    public void setUnlockedAt(LocalDateTime unlockedAt) {
         this.unlockedAt = unlockedAt;
     }
 
-    public Date getStartedAt() {
+    public LocalDateTime getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(Date startedAt) {
+    public void setStartedAt(LocalDateTime startedAt) {
         this.startedAt = startedAt;
     }
 
-    public Date getPassedAt() {
+    public LocalDateTime getPassedAt() {
         return passedAt;
     }
 
-    public void setPassedAt(Date passedAt) {
+    public void setPassedAt(LocalDateTime passedAt) {
         this.passedAt = passedAt;
     }
 
-    public Date getBurnedAt() {
+    public LocalDateTime getBurnedAt() {
         return burnedAt;
     }
 
-    public void setBurnedAt(Date burnedAt) {
+    public void setBurnedAt(LocalDateTime burnedAt) {
         this.burnedAt = burnedAt;
     }
 
-    public Date getAvailableAt() {
+    public LocalDateTime getAvailableAt() {
         return availableAt;
     }
 
-    public void setAvailableAt(Date availableAt) {
+    public void setAvailableAt(LocalDateTime availableAt) {
         this.availableAt = availableAt;
     }
 
-    public Date getResurrectedAt() {
+    public LocalDateTime getResurrectedAt() {
         return resurrectedAt;
     }
 
-    public void setResurrectedAt(Date resurrectedAt) {
+    public void setResurrectedAt(LocalDateTime resurrectedAt) {
         this.resurrectedAt = resurrectedAt;
     }
 

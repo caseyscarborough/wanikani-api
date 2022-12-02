@@ -4,7 +4,7 @@ import com.wanikani.api.v2.model.SubjectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
@@ -35,7 +35,7 @@ public class ReviewStatisticsRequest implements Request {
         private Integer percentagesGreaterThan;
         private Integer percentagesLessThan;
         private Boolean hidden;
-        private Date updatedAfter;
+        private LocalDateTime updatedAfter;
         private Long pageAfterId = null;
 
         public Builder pageAfterId(Long pageAfterId) {
@@ -77,7 +77,7 @@ public class ReviewStatisticsRequest implements Request {
             return this;
         }
 
-        public Builder updatedAfter(Date updatedAfter) {
+        public Builder updatedAfter(LocalDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }

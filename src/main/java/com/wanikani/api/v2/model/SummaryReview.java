@@ -1,18 +1,18 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class SummaryReview {
 
-    private Date availableAt;
+    private LocalDateTime availableAt;
     private List<Integer> subjectIds;
 
-    public Date getAvailableAt() {
+    public LocalDateTime getAvailableAt() {
         return availableAt;
     }
 
-    public void setAvailableAt(Date availableAt) {
+    public void setAvailableAt(LocalDateTime availableAt) {
         this.availableAt = availableAt;
     }
 

@@ -1,30 +1,16 @@
 package com.wanikani.api.v2.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
-    private static final String FROM_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
-    private static final String TO_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-
-    public static Date getApiDate(String apiDate) {
-        SimpleDateFormat format = new SimpleDateFormat(FROM_FORMAT);
-        TimeZone timeZone = TimeZone.getTimeZone("UTC");
-        format.setTimeZone(timeZone);
-        try {
-            return format.parse(apiDate);
-        } catch (ParseException e) {
-            return null;
-        }
+    public static String getApiDate(LocalDateTime date) {
+        return DateTimeFormatter.ISO_DATE_TIME.format(date.atZone(ZoneOffset.UTC));
     }
 
-    public static String getApiDate(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat(TO_FORMAT);
-        TimeZone timeZone = TimeZone.getTimeZone("UTC");
-        format.setTimeZone(timeZone);
-        return format.format(date);
+    public static LocalDateTime getApiDate(String date) {
+        return LocalDateTime.parse(date, DateTimeFormatter.ISO_DATE_TIME);
     }
 }

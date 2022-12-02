@@ -3,7 +3,7 @@ package com.wanikani.api.v2.request;
 import com.wanikani.api.v2.model.SubjectType;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -33,7 +33,7 @@ public class SubjectsRequest implements Request {
         private final List<Integer> levels = new ArrayList<>();
         private List<String> slugs = new ArrayList<>();
         private Boolean hidden;
-        private Date updatedAfter;
+        private LocalDateTime updatedAfter;
         private Long pageAfterId;
 
         public Builder slugs(List<String> slugs) {
@@ -46,7 +46,7 @@ public class SubjectsRequest implements Request {
             return this;
         }
 
-        public Builder updatedAfter(Date updatedAfter) {
+        public Builder updatedAfter(LocalDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }

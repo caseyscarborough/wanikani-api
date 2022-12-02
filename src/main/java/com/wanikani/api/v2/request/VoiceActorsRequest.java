@@ -2,7 +2,7 @@ package com.wanikani.api.v2.request;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +27,7 @@ public class VoiceActorsRequest implements Request {
 
     public static class Builder {
         private List<Long> ids = new ArrayList<>();
-        private Date updatedAfter;
+        private LocalDateTime updatedAfter;
 
         public Builder ids(List<Long> ids) {
             this.ids = ids;
@@ -38,7 +38,7 @@ public class VoiceActorsRequest implements Request {
             return ids(Arrays.stream(ids).boxed().collect(Collectors.toList()));
         }
 
-        public Builder updatedAfter(Date updatedAfter) {
+        public Builder updatedAfter(LocalDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }

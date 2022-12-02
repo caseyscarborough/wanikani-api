@@ -1,6 +1,6 @@
 package com.wanikani.api.v2.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ public class Subject implements Identifiable {
 
     private Long id;
     private Integer level;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private String characters;
     private List<CharacterImage> characterImages;
     private List<Meaning> meanings;
@@ -16,7 +16,7 @@ public class Subject implements Identifiable {
     private String slug;
     private String documentUrl;
     private SubjectType type;
-    private Date hiddenAt;
+    private LocalDateTime hiddenAt;
     private List<String> partsOfSpeech;
     private List<Long> componentSubjectIds;
     private List<Long> amalgamationSubjectIds;
@@ -39,11 +39,11 @@ public class Subject implements Identifiable {
         this.level = level;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -103,11 +103,11 @@ public class Subject implements Identifiable {
         this.readings = readings;
     }
 
-    public Date getHiddenAt() {
+    public LocalDateTime getHiddenAt() {
         return hiddenAt;
     }
 
-    public void setHiddenAt(Date hiddenAt) {
+    public void setHiddenAt(LocalDateTime hiddenAt) {
         this.hiddenAt = hiddenAt;
     }
 
