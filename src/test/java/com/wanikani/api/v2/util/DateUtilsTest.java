@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoField;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +14,7 @@ public class DateUtilsTest {
 
     @Test
     public void testDeserialization() {
-        final LocalDateTime date = DateUtils.getApiDate("2022-10-07T00:42:53.811877Z");
+        final ZonedDateTime date = DateUtils.getApiDate("2022-10-07T00:42:53.811877Z");
         assertEquals(2022, date.get(ChronoField.YEAR));
         assertEquals(10, date.get(ChronoField.MONTH_OF_YEAR));
         assertEquals(7, date.get(ChronoField.DAY_OF_MONTH));
@@ -25,7 +26,7 @@ public class DateUtilsTest {
 
     @Test
     public void testSerialization() {
-        LocalDateTime time = Instant.ofEpochMilli(1667431825313L).atZone(ZoneOffset.UTC).toLocalDateTime();
+        ZonedDateTime time = Instant.ofEpochMilli(1667431825313L).atZone(ZoneOffset.UTC);
         String result = DateUtils.getApiDate(time);
         System.out.println(result);
         assertEquals("2022-11-02T23:30:25.313Z", result);

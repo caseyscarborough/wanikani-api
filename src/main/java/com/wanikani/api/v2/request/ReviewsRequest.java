@@ -1,8 +1,10 @@
 package com.wanikani.api.v2.request;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
@@ -30,7 +32,7 @@ public class ReviewsRequest implements Request {
         private List<Long> assignmentIds = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private Long pageAfterId;
-        private LocalDateTime updatedAfter;
+        private ZonedDateTime updatedAfter;
 
         public Builder ids(Long... ids) {
             this.ids = Arrays.asList(ids);
@@ -51,7 +53,7 @@ public class ReviewsRequest implements Request {
             return subjectIds(Arrays.asList(ids));
         }
 
-        public Builder updatedAfter(LocalDateTime updatedAfter) {
+        public Builder updatedAfter(ZonedDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }

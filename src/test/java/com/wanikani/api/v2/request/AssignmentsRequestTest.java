@@ -3,8 +3,8 @@ package com.wanikani.api.v2.request;
 import org.junit.Test;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 import static com.wanikani.api.v2.model.SubjectType.KANJI;
 import static com.wanikani.api.v2.model.SubjectType.RADICAL;
@@ -15,7 +15,7 @@ public class AssignmentsRequestTest {
     @Test
     public void testQueryStringGeneration() {
         // Sunday, November 25, 2018 7:22:12 PM UTC
-        LocalDateTime updatedAfter = LocalDateTime.ofEpochSecond(1543173732L, 856000000, ZoneOffset.UTC);
+        ZonedDateTime updatedAfter = Instant.ofEpochMilli(1543173732856L).atZone(ZoneOffset.UTC);
         AssignmentsRequest request = AssignmentsRequest
             .builder()
             .subjectTypes(KANJI, RADICAL)

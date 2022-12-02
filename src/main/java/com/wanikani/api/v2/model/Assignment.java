@@ -1,17 +1,17 @@
 package com.wanikani.api.v2.model;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class Assignment implements Identifiable {
 
     private Long id;
-    private LocalDateTime createdAt;
-    private LocalDateTime unlockedAt;
-    private LocalDateTime startedAt;
-    private LocalDateTime passedAt;
-    private LocalDateTime burnedAt;
-    private LocalDateTime availableAt;
-    private LocalDateTime resurrectedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime unlockedAt;
+    private ZonedDateTime startedAt;
+    private ZonedDateTime passedAt;
+    private ZonedDateTime burnedAt;
+    private ZonedDateTime availableAt;
+    private ZonedDateTime resurrectedAt;
     private Long subjectId;
     private String subjectType;
     private Integer srsStage;
@@ -30,59 +30,59 @@ public class Assignment implements Identifiable {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUnlockedAt() {
+    public ZonedDateTime getUnlockedAt() {
         return unlockedAt;
     }
 
-    public void setUnlockedAt(LocalDateTime unlockedAt) {
+    public void setUnlockedAt(ZonedDateTime unlockedAt) {
         this.unlockedAt = unlockedAt;
     }
 
-    public LocalDateTime getStartedAt() {
+    public ZonedDateTime getStartedAt() {
         return startedAt;
     }
 
-    public void setStartedAt(LocalDateTime startedAt) {
+    public void setStartedAt(ZonedDateTime startedAt) {
         this.startedAt = startedAt;
     }
 
-    public LocalDateTime getPassedAt() {
+    public ZonedDateTime getPassedAt() {
         return passedAt;
     }
 
-    public void setPassedAt(LocalDateTime passedAt) {
+    public void setPassedAt(ZonedDateTime passedAt) {
         this.passedAt = passedAt;
     }
 
-    public LocalDateTime getBurnedAt() {
+    public ZonedDateTime getBurnedAt() {
         return burnedAt;
     }
 
-    public void setBurnedAt(LocalDateTime burnedAt) {
+    public void setBurnedAt(ZonedDateTime burnedAt) {
         this.burnedAt = burnedAt;
     }
 
-    public LocalDateTime getAvailableAt() {
+    public ZonedDateTime getAvailableAt() {
         return availableAt;
     }
 
-    public void setAvailableAt(LocalDateTime availableAt) {
+    public void setAvailableAt(ZonedDateTime availableAt) {
         this.availableAt = availableAt;
     }
 
-    public LocalDateTime getResurrectedAt() {
+    public ZonedDateTime getResurrectedAt() {
         return resurrectedAt;
     }
 
-    public void setResurrectedAt(LocalDateTime resurrectedAt) {
+    public void setResurrectedAt(ZonedDateTime resurrectedAt) {
         this.resurrectedAt = resurrectedAt;
     }
 

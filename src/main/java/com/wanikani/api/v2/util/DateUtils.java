@@ -1,16 +1,15 @@
 package com.wanikani.api.v2.util;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
-    public static String getApiDate(LocalDateTime date) {
-        return DateTimeFormatter.ISO_DATE_TIME.format(date.atZone(ZoneOffset.UTC));
+    public static String getApiDate(ZonedDateTime date) {
+        return DateTimeFormatter.ISO_DATE_TIME.format(date);
     }
 
-    public static LocalDateTime getApiDate(String date) {
-        return LocalDateTime.parse(date, DateTimeFormatter.ISO_DATE_TIME);
+    public static ZonedDateTime getApiDate(String date) {
+        return ZonedDateTime.parse(date, DateTimeFormatter.ISO_DATE_TIME);
     }
 }

@@ -2,7 +2,7 @@ package com.wanikani.api.v2.request;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +27,7 @@ public class SpacedRepetitionSystemsRequest implements Request {
 
     public static class Builder {
         private List<Long> ids = new ArrayList<>();
-        private LocalDateTime updatedAfter;
+        private ZonedDateTime updatedAfter;
 
         public Builder ids(List<Long> ids) {
             this.ids = ids;
@@ -38,7 +38,7 @@ public class SpacedRepetitionSystemsRequest implements Request {
             return ids(Arrays.stream(ids).boxed().collect(Collectors.toList()));
         }
 
-        public Builder updatedAfter(LocalDateTime updatedAfter) {
+        public Builder updatedAfter(ZonedDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }

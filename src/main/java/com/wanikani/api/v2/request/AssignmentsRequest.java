@@ -4,7 +4,7 @@ import com.wanikani.api.v2.model.SubjectType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
@@ -41,11 +41,11 @@ public class AssignmentsRequest implements Request {
         private Boolean burned;
         private Boolean resurrected;
         private Boolean hidden;
-        private LocalDateTime createdAt;
-        private LocalDateTime availableBefore;
-        private LocalDateTime availableAfter;
+        private ZonedDateTime createdAt;
+        private ZonedDateTime availableBefore;
+        private ZonedDateTime availableAfter;
         private Long pageAfterId;
-        private LocalDateTime updatedAfter;
+        private ZonedDateTime updatedAfter;
 
         public Builder ids(Integer... ids) {
             this.ids = Arrays.asList(ids);
@@ -71,22 +71,22 @@ public class AssignmentsRequest implements Request {
             return subjectTypes(Arrays.asList(subjectTypes));
         }
 
-        public Builder availableBefore(LocalDateTime availableBefore) {
+        public Builder availableBefore(ZonedDateTime availableBefore) {
             this.availableBefore = availableBefore;
             return this;
         }
 
-        public Builder availableAfter(LocalDateTime availableAfter) {
+        public Builder availableAfter(ZonedDateTime availableAfter) {
             this.availableAfter = availableAfter;
             return this;
         }
 
-        public Builder updatedAfter(LocalDateTime updatedAfter) {
+        public Builder updatedAfter(ZonedDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }
 
-        public Builder createdAt(LocalDateTime createdAt) {
+        public Builder createdAt(ZonedDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }

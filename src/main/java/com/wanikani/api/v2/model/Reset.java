@@ -1,12 +1,12 @@
 package com.wanikani.api.v2.model;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class Reset implements Identifiable {
 
     private Long id;
-    private LocalDateTime createdAt;
-    private LocalDateTime confirmedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime confirmedAt;
     private Integer originalLevel;
     private Integer targetLevel;
 
@@ -20,19 +20,19 @@ public class Reset implements Identifiable {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getConfirmedAt() {
+    public ZonedDateTime getConfirmedAt() {
         return confirmedAt;
     }
 
-    public void setConfirmedAt(LocalDateTime confirmedAt) {
+    public void setConfirmedAt(ZonedDateTime confirmedAt) {
         this.confirmedAt = confirmedAt;
     }
 

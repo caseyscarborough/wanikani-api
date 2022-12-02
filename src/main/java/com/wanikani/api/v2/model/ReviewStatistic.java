@@ -1,10 +1,10 @@
 package com.wanikani.api.v2.model;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class ReviewStatistic implements Identifiable {
     private Long id;
-    private LocalDateTime createdAt;
+    private ZonedDateTime createdAt;
     private Long subjectId;
     private String subjectType;
     private Integer meaningCorrect;
@@ -28,11 +28,11 @@ public class ReviewStatistic implements Identifiable {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

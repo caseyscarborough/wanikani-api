@@ -5,7 +5,7 @@ import com.wanikani.api.v2.model.SubjectType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +36,7 @@ public class StudyMaterialsRequest implements Request {
         private List<Long> ids = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
-        private LocalDateTime updatedAfter;
+        private ZonedDateTime updatedAfter;
 
         public Builder hidden(boolean hidden) {
             this.hidden = hidden;
@@ -70,7 +70,7 @@ public class StudyMaterialsRequest implements Request {
             return subjectTypes(Arrays.stream(subjectTypes).collect(Collectors.toList()));
         }
 
-        public Builder updatedAfter(LocalDateTime updatedAfter) {
+        public Builder updatedAfter(ZonedDateTime updatedAfter) {
             this.updatedAfter = updatedAfter;
             return this;
         }

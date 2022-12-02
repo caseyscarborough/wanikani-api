@@ -10,13 +10,13 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.wanikani.api.v2.util.DateUtils;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 class ObjectMapperFactory {
 
     ObjectMapper getInstance() {
         SimpleModule dateModule = new SimpleModule();
-        dateModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
+        dateModule.addDeserializer(ZonedDateTime.class, new ZonedDateTimeDeserializer());
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -25,9 +25,9 @@ class ObjectMapperFactory {
         return mapper;
     }
 
-    private static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
+    private static class ZonedDateTimeDeserializer extends JsonDeserializer<ZonedDateTime> {
         @Override
-        public LocalDateTime deserialize(JsonParser p, DeserializationContext ctx) throws IOException {
+        public ZonedDateTime deserialize(JsonParser p, DeserializationContext ctx) throws IOException {
             return DateUtils.getApiDate(p.getValueAsString());
         }
     }
