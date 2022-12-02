@@ -30,7 +30,11 @@ public class WaniKaniClient {
     private final JsonUtils jsonUtils = new JsonUtils();
 
     public WaniKaniClient(String apiKey) {
-        this.client = new HttpClient(apiKey);
+        this(new HttpClient(apiKey));
+    }
+
+    WaniKaniClient(HttpClient client) {
+        this.client = client;
         this.transformer = new ResourceTransformer();
     }
 

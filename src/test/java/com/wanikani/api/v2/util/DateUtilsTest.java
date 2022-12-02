@@ -9,10 +9,10 @@ import java.time.temporal.ChronoField;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DateUtilsTest {
+class DateUtilsTest {
 
     @Test
-    public void testDeserialization() {
+    void testDeserialization() {
         final ZonedDateTime date = DateUtils.getApiDate("2022-10-07T00:42:53.811877Z");
         assertEquals(2022, date.get(ChronoField.YEAR));
         assertEquals(10, date.get(ChronoField.MONTH_OF_YEAR));
@@ -24,7 +24,7 @@ public class DateUtilsTest {
     }
 
     @Test
-    public void testSerialization() {
+    void testSerialization() {
         ZonedDateTime time = Instant.ofEpochMilli(1667431825313L).atZone(ZoneOffset.UTC);
         String result = DateUtils.getApiDate(time);
         System.out.println(result);
