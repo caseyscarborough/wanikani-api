@@ -2,6 +2,8 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.time.ZonedDateTime;
@@ -28,14 +30,13 @@ public class ReviewStatisticsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends BaseBuilder<ReviewStatisticsRequest, Builder> {
         private List<Long> ids = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
         private Integer percentagesGreaterThan;
         private Integer percentagesLessThan;
         private Boolean hidden;
-        private ZonedDateTime updatedAfter;
         private Long pageAfterId = null;
 
         public Builder pageAfterId(Long pageAfterId) {
@@ -77,14 +78,9 @@ public class ReviewStatisticsRequest implements Request {
             return this;
         }
 
-        public Builder updatedAfter(ZonedDateTime updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
-        }
-
+        @Override
         public ReviewStatisticsRequest build() {
-            StringBuilder queryString = new StringBuilder();
-            appendDate(queryString, "updated_after", updatedAfter);
+            StringBuilder queryString = super.queryString();
             appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "subject_types", subjectTypes);

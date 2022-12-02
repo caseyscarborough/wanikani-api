@@ -2,9 +2,11 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import static com.wanikani.api.v2.request.QueryStringUtils.append;
@@ -28,7 +30,7 @@ public class AssignmentsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends BaseBuilder<AssignmentsRequest, Builder> {
 
         private List<Integer> ids = new ArrayList<>();
         private List<Integer> subjectIds = new ArrayList<>();
@@ -45,7 +47,6 @@ public class AssignmentsRequest implements Request {
         private ZonedDateTime availableBefore;
         private ZonedDateTime availableAfter;
         private Long pageAfterId;
-        private ZonedDateTime updatedAfter;
 
         public Builder ids(Integer... ids) {
             this.ids = Arrays.asList(ids);
@@ -76,19 +77,26 @@ public class AssignmentsRequest implements Request {
             return this;
         }
 
+        public Builder availableBefore(Instant instant) {
+            return availableBefore(instant.atZone(ZoneOffset.UTC));
+        }
+
         public Builder availableAfter(ZonedDateTime availableAfter) {
             this.availableAfter = availableAfter;
             return this;
         }
 
-        public Builder updatedAfter(ZonedDateTime updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
+        public Builder availableAfter(Instant instant) {
+            return availableAfter(instant.atZone(ZoneOffset.UTC));
         }
 
         public Builder createdAt(ZonedDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
+        }
+
+        public Builder createdAt(Instant instant) {
+            return createdAt(instant.atZone(ZoneOffset.UTC));
         }
 
         public Builder pageAfterId(Long id) {
@@ -135,13 +143,13 @@ public class AssignmentsRequest implements Request {
             return this;
         }
 
+        @Override
         public AssignmentsRequest build() {
-            StringBuilder queryString = new StringBuilder();
+            StringBuilder queryString = super.queryString();
             appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "levels", levels);
             appendList(queryString, "subject_types", subjectTypes);
-            appendDate(queryString, "updated_after", updatedAfter);
             appendDate(queryString, "created_at", createdAt);
             appendDate(queryString, "available_before", availableBefore);
             appendDate(queryString, "available_after", availableAfter);

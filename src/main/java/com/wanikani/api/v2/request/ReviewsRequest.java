@@ -27,12 +27,11 @@ public class ReviewsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends BaseBuilder<ReviewsRequest, Builder> {
         private List<Long> ids = new ArrayList<>();
         private List<Long> assignmentIds = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private Long pageAfterId;
-        private ZonedDateTime updatedAfter;
 
         public Builder ids(Long... ids) {
             this.ids = Arrays.asList(ids);
@@ -53,22 +52,17 @@ public class ReviewsRequest implements Request {
             return subjectIds(Arrays.asList(ids));
         }
 
-        public Builder updatedAfter(ZonedDateTime updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
-        }
-
         public Builder pageAfterId(Long id) {
             this.pageAfterId = id;
             return this;
         }
 
+        @Override
         public ReviewsRequest build() {
-            StringBuilder queryString = new StringBuilder();
+            StringBuilder queryString = super.queryString();
             appendList(queryString, "ids", ids);
             appendList(queryString, "assignment_ids", assignmentIds);
             appendList(queryString, "subject_ids", subjectIds);
-            appendDate(queryString, "updated_after", updatedAfter);
             append(queryString, "page_after_id", pageAfterId);
             return new ReviewsRequest(queryString.toString());
         }

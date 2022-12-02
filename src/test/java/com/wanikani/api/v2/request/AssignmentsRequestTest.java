@@ -24,6 +24,6 @@ public class AssignmentsRequestTest {
             .started(true)
             .updatedAfter(updatedAfter)
             .build();
-        assertEquals("?subject_types=kanji,radical&updated_after=2018-11-25T19:22:12.856Z&srs_stages=1,4,5&started=true&burned=false", request.getQueryString());
+        assertEquals("?updated_after=2018-11-25T19:22:12.856Z&subject_types=kanji,radical&srs_stages=1,4,5&started=true&burned=false", request.getQueryString());
     }
 }

@@ -2,6 +2,8 @@ package com.wanikani.api.v2.request;
 
 import com.wanikani.api.v2.model.SubjectType;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,12 +33,11 @@ public class StudyMaterialsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends BaseBuilder<StudyMaterialsRequest, Builder> {
         private Boolean hidden;
         private List<Long> ids = new ArrayList<>();
         private List<Long> subjectIds = new ArrayList<>();
         private List<String> subjectTypes = new ArrayList<>();
-        private ZonedDateTime updatedAfter;
 
         public Builder hidden(boolean hidden) {
             this.hidden = hidden;
@@ -70,18 +71,13 @@ public class StudyMaterialsRequest implements Request {
             return subjectTypes(Arrays.stream(subjectTypes).collect(Collectors.toList()));
         }
 
-        public Builder updatedAfter(ZonedDateTime updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
-        }
-
+        @Override
         public StudyMaterialsRequest build() {
-            StringBuilder queryString = new StringBuilder();
+            StringBuilder queryString = super.queryString();
             append(queryString, "hidden", hidden);
             appendList(queryString, "ids", ids);
             appendList(queryString, "subject_ids", subjectIds);
             appendList(queryString, "subject_types", subjectTypes);
-            appendDate(queryString, "updated_after", updatedAfter);
 
             return new StudyMaterialsRequest(queryString.toString());
         }

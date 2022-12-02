@@ -1,8 +1,10 @@
 package com.wanikani.api.v2.request;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +27,8 @@ public class VoiceActorsRequest implements Request {
         return queryString;
     }
 
-    public static class Builder {
+    public static class Builder extends BaseBuilder<VoiceActorsRequest, Builder> {
         private List<Long> ids = new ArrayList<>();
-        private ZonedDateTime updatedAfter;
 
         public Builder ids(List<Long> ids) {
             this.ids = ids;
@@ -38,14 +39,9 @@ public class VoiceActorsRequest implements Request {
             return ids(Arrays.stream(ids).boxed().collect(Collectors.toList()));
         }
 
-        public Builder updatedAfter(ZonedDateTime updatedAfter) {
-            this.updatedAfter = updatedAfter;
-            return this;
-        }
-
+        @Override
         public VoiceActorsRequest build() {
-            StringBuilder queryString = new StringBuilder();
-            appendDate(queryString, "updated_after", updatedAfter);
+            StringBuilder queryString = super.queryString();
             appendList(queryString, "ids", ids);
             return new VoiceActorsRequest(queryString.toString());
         }
