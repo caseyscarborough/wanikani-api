@@ -36,7 +36,10 @@ class HttpClient {
         } catch (MalformedURLException e) {
             throw new WaniKaniException("URL was malformed: " + url, e);
         } catch (IOException e) {
-            throw new WaniKaniException("An IO error occurred while performing request.", e);
+            if (e.getMessage().contains("401")) {
+                throw new WaniKaniException("WaniKani API key is likely incorrect or invalid", e);
+            }
+            throw new WaniKaniException("An IO error occurred while performing request", e);
         }
     }
 }

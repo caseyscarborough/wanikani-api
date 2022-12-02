@@ -7,19 +7,17 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import java.io.IOException;
 import java.util.Arrays;
 
-public enum SubjectType {
-
-    RADICAL("radical"),
-    KANJI("kanji"),
-    VOCABULARY("vocabulary");
+public enum Gender {
+    MALE("male"),
+    FEMALE("female");
 
     private final String name;
 
-    SubjectType(String name) {
+    Gender(String name) {
         this.name = name;
     }
 
-    public static SubjectType findByName(String name) {
+    public static Gender findByName(String name) {
         return Arrays
             .stream(values())
             .filter(t -> t.getName().equalsIgnoreCase(name))
@@ -31,9 +29,9 @@ public enum SubjectType {
         return name;
     }
 
-    public static class Deserializer extends JsonDeserializer<SubjectType> {
+    public static class Deserializer extends JsonDeserializer<Gender> {
         @Override
-        public SubjectType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public Gender deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             return findByName(p.getValueAsString());
         }
     }
