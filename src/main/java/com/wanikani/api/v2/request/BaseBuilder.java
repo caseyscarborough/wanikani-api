@@ -5,8 +5,6 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
-
 abstract class BaseBuilder<T, B extends BaseBuilder<T, B>> {
 
     ZonedDateTime updatedAfter;
@@ -25,10 +23,9 @@ abstract class BaseBuilder<T, B extends BaseBuilder<T, B>> {
         return updatedAfter(updatedAfter.toZonedDateTime());
     }
 
-    StringBuilder queryString() {
-        StringBuilder sb = new StringBuilder();
-        appendDate(sb, "updated_after", updatedAfter);
-        return sb;
+    QueryString queryString() {
+        return new QueryString()
+            .appendDate("updated_after", updatedAfter);
     }
 
     public abstract T build();

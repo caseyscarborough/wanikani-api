@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 import static java.util.stream.Collectors.toList;
 
 public class SubjectsRequest implements Request {
@@ -65,11 +63,11 @@ public class SubjectsRequest implements Request {
 
         @Override
         public SubjectsRequest build() {
-            StringBuilder queryString = super.queryString();
-            appendList(queryString, "types", types);
-            appendList(queryString, "levels", levels);
-            appendList(queryString, "slugs", slugs);
-            append(queryString, "hidden", hidden);
+            QueryString queryString = super.queryString()
+                .appendList( "types", types)
+                .appendList( "levels", levels)
+                .appendList( "slugs", slugs)
+                .append( "hidden", hidden);
             return new SubjectsRequest(queryString.toString());
         }
     }

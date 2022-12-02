@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
-
 abstract class CollectionBuilder<T, B extends CollectionBuilder<T, B>> extends BaseBuilder<T, B> {
 
     private List<Long> ids = new ArrayList<>();
@@ -38,10 +35,9 @@ abstract class CollectionBuilder<T, B extends CollectionBuilder<T, B>> extends B
     }
 
     @Override
-    StringBuilder queryString() {
-        StringBuilder queryString = super.queryString();
-        appendList(queryString, "ids", ids);
-        append(queryString, "page_after_id", pageAfterId);
-        return queryString;
+    QueryString queryString() {
+        return super.queryString()
+            .appendList( "ids", ids)
+            .append( "page_after_id", pageAfterId);
     }
 }

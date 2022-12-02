@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 import static java.util.stream.Collectors.toList;
 
 public class ReviewStatisticsRequest implements Request {
@@ -64,12 +62,12 @@ public class ReviewStatisticsRequest implements Request {
 
         @Override
         public ReviewStatisticsRequest build() {
-            StringBuilder queryString = super.queryString();
-            appendList(queryString, "subject_ids", subjectIds);
-            appendList(queryString, "subject_types", subjectTypes);
-            append(queryString, "percentages_greater_than", percentagesGreaterThan);
-            append(queryString, "percentages_less_than", percentagesLessThan);
-            append(queryString, "hidden", hidden);
+            QueryString queryString = super.queryString()
+                .appendList( "subject_ids", subjectIds)
+                .appendList( "subject_types", subjectTypes)
+                .append( "percentages_greater_than", percentagesGreaterThan)
+                .append( "percentages_less_than", percentagesLessThan)
+                .append( "hidden", hidden);
             return new ReviewStatisticsRequest(queryString.toString());
         }
     }

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
-
 public class ReviewsRequest implements Request {
 
     private final String queryString;
@@ -42,9 +40,9 @@ public class ReviewsRequest implements Request {
 
         @Override
         public ReviewsRequest build() {
-            StringBuilder queryString = super.queryString();
-            appendList(queryString, "assignment_ids", assignmentIds);
-            appendList(queryString, "subject_ids", subjectIds);
+            QueryString queryString = super.queryString()
+                .appendList( "assignment_ids", assignmentIds)
+                .appendList( "subject_ids", subjectIds);
             return new ReviewsRequest(queryString.toString());
         }
     }

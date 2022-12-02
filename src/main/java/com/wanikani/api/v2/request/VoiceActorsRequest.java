@@ -20,7 +20,7 @@ public class VoiceActorsRequest implements Request {
 
         @Override
         public VoiceActorsRequest build() {
-            StringBuilder queryString = super.queryString();
+            QueryString queryString = super.queryString();
             return new VoiceActorsRequest(queryString.toString());
         }
     }

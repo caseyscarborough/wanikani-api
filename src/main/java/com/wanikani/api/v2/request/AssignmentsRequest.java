@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendDate;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
 import static java.util.stream.Collectors.toList;
 
 public class AssignmentsRequest implements Request {
@@ -146,20 +143,20 @@ public class AssignmentsRequest implements Request {
 
         @Override
         public AssignmentsRequest build() {
-            StringBuilder queryString = super.queryString();
-            appendList(queryString, "subject_ids", subjectIds);
-            appendList(queryString, "levels", levels);
-            appendList(queryString, "subject_types", subjectTypes);
-            appendDate(queryString, "created_at", createdAt);
-            appendDate(queryString, "available_before", availableBefore);
-            appendDate(queryString, "available_after", availableAfter);
-            appendList(queryString, "srs_stages", srsStages);
-            append(queryString, "unlocked", unlocked);
-            append(queryString, "started", started);
-            append(queryString, "passed", passed);
-            append(queryString, "burned", burned);
-            append(queryString, "resurrected", resurrected);
-            append(queryString, "hidden", hidden);
+            QueryString queryString = super.queryString()
+                .appendList("subject_ids", subjectIds)
+                .appendList("levels", levels)
+                .appendList("subject_types", subjectTypes)
+                .appendDate("created_at", createdAt)
+                .appendDate("available_before", availableBefore)
+                .appendDate("available_after", availableAfter)
+                .appendList("srs_stages", srsStages)
+                .append("unlocked", unlocked)
+                .append("started", started)
+                .append("passed", passed)
+                .append("burned", burned)
+                .append("resurrected", resurrected)
+                .append( "hidden", hidden);
             return new AssignmentsRequest(queryString.toString());
         }
     }

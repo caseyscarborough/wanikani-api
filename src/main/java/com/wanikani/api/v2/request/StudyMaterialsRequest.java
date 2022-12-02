@@ -7,9 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.wanikani.api.v2.request.QueryStringUtils.append;
-import static com.wanikani.api.v2.request.QueryStringUtils.appendList;
-
 public class StudyMaterialsRequest implements Request {
 
     private final String queryString;
@@ -56,10 +53,10 @@ public class StudyMaterialsRequest implements Request {
 
         @Override
         public StudyMaterialsRequest build() {
-            StringBuilder queryString = super.queryString();
-            append(queryString, "hidden", hidden);
-            appendList(queryString, "subject_ids", subjectIds);
-            appendList(queryString, "subject_types", subjectTypes);
+            QueryString queryString = super.queryString()
+                .append( "hidden", hidden)
+                .appendList( "subject_ids", subjectIds)
+                .appendList( "subject_types", subjectTypes);
             return new StudyMaterialsRequest(queryString.toString());
         }
     }

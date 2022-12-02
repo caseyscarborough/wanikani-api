@@ -20,7 +20,7 @@ public class SpacedRepetitionSystemsRequest implements Request {
 
         @Override
         public SpacedRepetitionSystemsRequest build() {
-            StringBuilder queryString = super.queryString();
+            QueryString queryString = super.queryString();
             return new SpacedRepetitionSystemsRequest(queryString.toString());
         }
     }
