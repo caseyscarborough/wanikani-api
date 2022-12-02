@@ -11,7 +11,7 @@ import java.io.IOException;
 class HttpClient {
 
     private final OkHttpClient client;
-    private final String apiKey;
+    final String apiKey;
 
     HttpClient(String apiKey) {
         this.apiKey = apiKey;

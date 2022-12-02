@@ -10,10 +10,10 @@ import static com.wanikani.api.v2.model.SubjectType.KANJI;
 import static com.wanikani.api.v2.model.SubjectType.RADICAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AssignmentsRequestTest {
+class AssignmentsRequestTest {
 
     @Test
-    public void testQueryStringGeneration() {
+    void testQueryStringGeneration() {
         // Sunday, November 25, 2018 7:22:12 PM UTC
         ZonedDateTime updatedAfter = Instant.ofEpochMilli(1543173732856L).atZone(ZoneOffset.UTC);
         AssignmentsRequest request = AssignmentsRequest

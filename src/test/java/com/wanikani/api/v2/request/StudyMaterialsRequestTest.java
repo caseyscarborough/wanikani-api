@@ -7,10 +7,10 @@ import java.time.ZoneOffset;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StudyMaterialsRequestTest {
+class StudyMaterialsRequestTest {
 
     @Test
-    public void testQueryString() {
+    void testQueryString() {
         String utcTime = "2022-12-02T19:35:35Z";
         final Instant instant = Instant.ofEpochMilli(1670009735000L);
         final StudyMaterialsRequest requestOffset5 = StudyMaterialsRequest.builder()
