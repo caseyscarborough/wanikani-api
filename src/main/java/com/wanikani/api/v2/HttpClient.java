@@ -18,12 +18,12 @@ class HttpClient {
         this.client = new OkHttpClient.Builder().build();
     }
 
-    String get(String url) {
+    String get(String contextPath) {
         Request request = new Request.Builder()
             .get()
             .header("Authorization", String.format("Bearer %s", apiKey))
             .header("Wanikani-Revision", Constants.API_REVISION)
-            .url(url)
+            .url(Constants.API_BASE_URL + contextPath)
             .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {

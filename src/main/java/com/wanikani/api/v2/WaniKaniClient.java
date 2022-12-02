@@ -23,8 +23,6 @@ import com.wanikani.api.v2.request.VoiceActorsRequest;
 
 import java.util.List;
 
-import static com.wanikani.api.v2.Constants.API_BASE_URL;
-
 public class WaniKaniClient {
 
     private final HttpClient client;
@@ -37,42 +35,42 @@ public class WaniKaniClient {
     }
 
     public Summary getSummary() {
-        String response = client.get(API_BASE_URL + "/summary");
+        String response = client.get("/summary");
         Resource<Summary> resource = jsonUtils.fromJson(response, new TypeReference<Resource<Summary>>() {
         });
         return transformer.getData(resource);
     }
 
     public User getUser() {
-        String response = client.get(API_BASE_URL + "/user");
+        String response = client.get("/user");
         Resource<User> resource = jsonUtils.fromJson(response, new TypeReference<Resource<User>>() {
         });
         return transformer.getData(resource);
     }
 
     public List<Assignment> getAssignments(AssignmentsRequest request) {
-        String response = client.get(API_BASE_URL + "/assignments" + request.getQueryString());
+        String response = client.get("/assignments" + request.getQueryString());
         Resource<List<Resource<Assignment>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Assignment>>>>() {
         });
         return transformer.getListData(resource);
     }
 
     public List<Subject> getSubjects(SubjectsRequest request) {
-        String response = client.get(API_BASE_URL + "/subjects" + request.getQueryString());
+        String response = client.get("/subjects" + request.getQueryString());
         Resource<List<Resource<Subject>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Subject>>>>() {
         });
         return transformer.getListData(resource);
     }
 
     public Subject getSubject(Integer id) {
-        String response = client.get(API_BASE_URL + "/subjects/" + id);
+        String response = client.get("/subjects/" + id);
         Resource<Subject> resource = jsonUtils.fromJson(response, new TypeReference<Resource<Subject>>() {
         });
         return transformer.getData(resource);
     }
 
     public List<Review> getReviews(ReviewsRequest request) {
-        String response = client.get(API_BASE_URL + "/reviews" + request.getQueryString());
+        String response = client.get("/reviews" + request.getQueryString());
         Resource<List<Resource<Review>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Review>>>>() {
         });
         return transformer.getListData(resource);
@@ -83,7 +81,7 @@ public class WaniKaniClient {
      * See <a href="https://docs.api.wanikani.com/20170710/#spaced-repetition-systems">WaniKani docs</a>
      */
     public List<SpacedRepetitionSystem> getSpacedRepetitionSystems(SpacedRepetitionSystemsRequest request) {
-        String response = client.get(API_BASE_URL + "/spaced_repetition_systems" + request.getQueryString());
+        String response = client.get("/spaced_repetition_systems" + request.getQueryString());
         Resource<List<Resource<SpacedRepetitionSystem>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<SpacedRepetitionSystem>>>>() {
         });
         return transformer.getListData(resource);
@@ -97,14 +95,14 @@ public class WaniKaniClient {
     }
 
     public List<Reset> getResets() {
-        String response = client.get(API_BASE_URL + "/resets");
+        String response = client.get("/resets");
         Resource<List<Resource<Reset>>> resource = jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<Reset>>>>() {
         });
         return transformer.getListData(resource);
     }
 
     public List<LevelProgression> getLevelProgressions() {
-        String response = client.get(API_BASE_URL + "/level_progressions");
+        String response = client.get("/level_progressions");
         Resource<List<Resource<LevelProgression>>> resource =
             jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<LevelProgression>>>>() {
             });
@@ -112,7 +110,7 @@ public class WaniKaniClient {
     }
 
     public List<ReviewStatistic> getReviewStatistics(ReviewStatisticsRequest request) {
-        String response = client.get(API_BASE_URL + "/review_statistics" + request.getQueryString());
+        String response = client.get("/review_statistics" + request.getQueryString());
         Resource<List<Resource<ReviewStatistic>>> resource =
             jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<ReviewStatistic>>>>() {
             });
@@ -124,7 +122,7 @@ public class WaniKaniClient {
      * See <a href="https://docs.api.wanikani.com/20170710/#voice-actors">WaniKani docs</a>
      */
     public List<VoiceActor> getVoiceActors(VoiceActorsRequest request) {
-        String response = client.get(API_BASE_URL + "/voice_actors" + request.getQueryString());
+        String response = client.get("/voice_actors" + request.getQueryString());
         Resource<List<Resource<VoiceActor>>> resource =
             jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<VoiceActor>>>>() {
             });
@@ -143,7 +141,7 @@ public class WaniKaniClient {
      * See <a href="https://docs.api.wanikani.com/20170710/#study-materials">WaniKani docs</a>
      */
     public List<StudyMaterial> getStudyMaterials(StudyMaterialsRequest request) {
-        String response = client.get(API_BASE_URL + "/study_materials" + request.getQueryString());
+        String response = client.get("/study_materials" + request.getQueryString());
         Resource<List<Resource<StudyMaterial>>> resource =
             jsonUtils.fromJson(response, new TypeReference<Resource<List<Resource<StudyMaterial>>>>() {
             });
