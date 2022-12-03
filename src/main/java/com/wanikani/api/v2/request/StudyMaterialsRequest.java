@@ -8,10 +8,10 @@ import java.util.List;
 @SuperBuilder(toBuilder = true)
 public class StudyMaterialsRequest extends CollectionRequest {
     @Singular
-    private List<Long> subjectIds;
+    private final List<Long> subjectIds;
     @Singular
-    private List<String> subjectTypes;
-    private Boolean hidden;
+    private final List<String> subjectTypes;
+    private final Boolean hidden;
 
     @Override
     public String getQueryString() {

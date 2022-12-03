@@ -3,17 +3,16 @@ package com.wanikani.api.v2.request;
 import lombok.Singular;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SuperBuilder(toBuilder = true)
 public class SubjectsRequest extends CollectionRequest {
     @Singular
-    private final List<Integer> levels = new ArrayList<>();
+    private final List<Integer> levels;
     @Singular
-    private final List<String> types = new ArrayList<>();
+    private final List<String> types;
     @Singular
-    private final List<String> slugs = new ArrayList<>();
+    private final List<String> slugs;
     private final Boolean hidden;
 
     @Override

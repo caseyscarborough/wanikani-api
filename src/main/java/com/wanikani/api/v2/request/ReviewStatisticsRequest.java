@@ -8,12 +8,12 @@ import java.util.List;
 @SuperBuilder(toBuilder = true)
 public class ReviewStatisticsRequest extends CollectionRequest {
     @Singular
-    private List<Long> subjectIds;
+    private final List<Long> subjectIds;
     @Singular
-    private List<String> subjectTypes;
-    private Integer percentagesGreaterThan;
-    private Integer percentagesLessThan;
-    private Boolean hidden;
+    private final List<String> subjectTypes;
+    private final Integer percentagesGreaterThan;
+    private final Integer percentagesLessThan;
+    private final Boolean hidden;
 
     @Override
     public String getQueryString() {
