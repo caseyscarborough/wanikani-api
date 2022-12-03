@@ -12,9 +12,8 @@ public class Review implements Identifiable {
     private Long assignmentId;
     private Integer subjectId;
     private Integer startingSrsStage;
-    private String startingSrsStageName;
     private Integer endingSrsStage;
-    private String endingSrsStageName;
     private Integer incorrectMeaningAnswers;
     private Integer incorrectReadingAnswers;
+    private Long spacedRepetitionSystemId;
 }

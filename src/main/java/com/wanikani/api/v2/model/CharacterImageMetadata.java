@@ -3,7 +3,7 @@ package com.wanikani.api.v2.model;
 import lombok.Data;
 
 @Data
-public class Metadata {
+public class CharacterImageMetadata {
 
     private String color;
     private String dimensions;

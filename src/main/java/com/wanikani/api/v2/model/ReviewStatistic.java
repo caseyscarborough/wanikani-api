@@ -10,14 +10,14 @@ public class ReviewStatistic implements Identifiable {
     private ZonedDateTime createdAt;
     private Long subjectId;
     private String subjectType;
-    private Integer meaningCorrect;
-    private Integer meaningIncorrect;
-    private Integer meaningMaxStreak;
-    private Integer meaningCurrentStreak;
-    private Integer readingCorrect;
-    private Integer readingIncorrect;
-    private Integer readingMaxStreak;
-    private Integer readingCurrentStreak;
-    private Integer percentageCorrect;
-    private Boolean hidden;
+    private int meaningCorrect;
+    private int meaningIncorrect;
+    private int meaningMaxStreak;
+    private int meaningCurrentStreak;
+    private int readingCorrect;
+    private int readingIncorrect;
+    private int readingMaxStreak;
+    private int readingCurrentStreak;
+    private int percentageCorrect;
+    private boolean hidden;
 }

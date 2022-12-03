@@ -14,5 +14,5 @@ public class LevelProgression implements Identifiable {
     private ZonedDateTime passedAt;
     private ZonedDateTime completedAt;
     private ZonedDateTime abandonedAt;
-    private Integer level;
+    private int level;
 }

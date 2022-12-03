@@ -10,8 +10,9 @@ public class User {
     private String id;
     private String username;
     private Integer level;
+    private String profileUrl;
     private ZonedDateTime startedAt;
-    private boolean subscribed;
     private ZonedDateTime currentVacationStartedAt;
-    private Integer maxLevelGrantedBySubscription;
+    private Preferences preferences;
+    private Subscription subscription;
 }

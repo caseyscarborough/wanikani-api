@@ -17,9 +17,19 @@ public class Subject implements Identifiable {
     private List<Reading> readings;
     private String slug;
     private String documentUrl;
+    private String readingMnemonic;
+    private String readingHint;
+    private String meaningMnemonic;
+    private String meaningHint;
     private SubjectType type;
     private ZonedDateTime hiddenAt;
     private List<String> partsOfSpeech;
     private List<Long> componentSubjectIds;
     private List<Long> amalgamationSubjectIds;
+    private List<Long> visuallySimilarSubjectIds;
+    private List<PronunciationAudio> pronunciationAudios;
+    private List<ContextSentence> contextSentences;
+    private List<AuxiliaryMeaning> auxiliaryMeanings;
+    private Integer lessonPosition;
+    private Long spacedRepetitionSystemId;
 }
