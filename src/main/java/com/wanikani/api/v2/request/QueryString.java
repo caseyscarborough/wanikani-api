@@ -4,6 +4,7 @@ import com.wanikani.api.v2.util.DateUtils;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.function.Function;
 
 class QueryString {
     private final StringBuilder builder = new StringBuilder();
@@ -17,12 +18,16 @@ class QueryString {
     }
 
     public <T> QueryString appendList(String parameter, List<T> items) {
+        return appendList(parameter, items, String::valueOf);
+    }
+
+    public <T> QueryString appendList(String parameter, List<T> items, Function<T, String> mapToString) {
         if (items == null || items.isEmpty()) {
             return this;
         }
 
         appendParameter(parameter);
-        items.forEach(i -> builder.append(i).append(","));
+        items.forEach(i -> builder.append(mapToString.apply(i)).append(","));
         builder.deleteCharAt(builder.length() - 1);
         return this;
     }

@@ -1,5 +1,6 @@
 package com.wanikani.api.v2.request;
 
+import com.wanikani.api.v2.model.SubjectType;
 import lombok.Singular;
 import lombok.experimental.SuperBuilder;
 
@@ -11,7 +12,7 @@ public class AssignmentsRequest extends CollectionRequest {
     @Singular
     private final List<Integer> subjectIds;
     @Singular
-    private final List<String> subjectTypes;
+    private final List<SubjectType> subjectTypes;
     @Singular
     private final List<Integer> levels;
     @Singular
@@ -31,7 +32,7 @@ public class AssignmentsRequest extends CollectionRequest {
         return super.queryString()
             .appendList("subject_ids", subjectIds)
             .appendList("levels", levels)
-            .appendList("subject_types", subjectTypes)
+            .appendList("subject_types", subjectTypes, SubjectType::getName)
             .appendDate("created_at", createdAt)
             .appendDate("available_before", availableBefore)
             .appendDate("available_after", availableAfter)

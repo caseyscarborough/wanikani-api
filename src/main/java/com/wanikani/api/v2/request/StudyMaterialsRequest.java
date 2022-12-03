@@ -1,5 +1,6 @@
 package com.wanikani.api.v2.request;
 
+import com.wanikani.api.v2.model.SubjectType;
 import lombok.Singular;
 import lombok.experimental.SuperBuilder;
 
@@ -10,7 +11,7 @@ public class StudyMaterialsRequest extends CollectionRequest {
     @Singular
     private final List<Long> subjectIds;
     @Singular
-    private final List<String> subjectTypes;
+    private final List<SubjectType> subjectTypes;
     private final Boolean hidden;
 
     @Override
@@ -18,7 +19,7 @@ public class StudyMaterialsRequest extends CollectionRequest {
         return super.queryString()
             .append("hidden", hidden)
             .appendList("subject_ids", subjectIds)
-            .appendList("subject_types", subjectTypes)
+            .appendList("subject_types", subjectTypes, SubjectType::getName)
             .toString();
     }
 }

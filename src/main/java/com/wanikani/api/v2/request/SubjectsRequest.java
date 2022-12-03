@@ -1,5 +1,6 @@
 package com.wanikani.api.v2.request;
 
+import com.wanikani.api.v2.model.SubjectType;
 import lombok.Singular;
 import lombok.experimental.SuperBuilder;
 
@@ -10,7 +11,7 @@ public class SubjectsRequest extends CollectionRequest {
     @Singular
     private final List<Integer> levels;
     @Singular
-    private final List<String> types;
+    private final List<SubjectType> types;
     @Singular
     private final List<String> slugs;
     private final Boolean hidden;
@@ -18,7 +19,7 @@ public class SubjectsRequest extends CollectionRequest {
     @Override
     public String getQueryString() {
         return super.queryString()
-            .appendList("types", types)
+            .appendList("types", types, SubjectType::getName)
             .appendList("levels", levels)
             .appendList("slugs", slugs)
             .append("hidden", hidden)
