@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 
 @SuperBuilder(toBuilder = true)
 @ToString
-public abstract class BaseRequest implements Request {
+abstract class BaseRequest implements Request {
     private final ZonedDateTime updatedAfter;
 
     protected QueryString queryString() {
