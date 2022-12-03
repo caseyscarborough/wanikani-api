@@ -1,27 +1,10 @@
 package com.wanikani.api.v2.request;
 
-public class SpacedRepetitionSystemsRequest implements Request {
+import lombok.experimental.SuperBuilder;
 
-    private final String queryString;
-
-    public SpacedRepetitionSystemsRequest(String queryString) {
-        this.queryString = queryString;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
+@SuperBuilder(toBuilder = true)
+public class SpacedRepetitionSystemsRequest extends CollectionRequest {
     public String getQueryString() {
-        return queryString;
-    }
-
-    public static class Builder extends CollectionBuilder<SpacedRepetitionSystemsRequest, Builder> {
-
-        @Override
-        public SpacedRepetitionSystemsRequest build() {
-            QueryString queryString = super.queryString();
-            return new SpacedRepetitionSystemsRequest(queryString.toString());
-        }
+        return super.queryString().toString();
     }
 }

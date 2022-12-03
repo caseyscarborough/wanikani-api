@@ -1,163 +1,47 @@
 package com.wanikani.api.v2.request;
 
-import com.wanikani.api.v2.model.SubjectType;
+import lombok.Singular;
+import lombok.experimental.SuperBuilder;
 
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
+@SuperBuilder(toBuilder = true)
+public class AssignmentsRequest extends CollectionRequest {
+    @Singular
+    private final List<Integer> subjectIds;
+    @Singular
+    private final List<String> subjectTypes;
+    @Singular
+    private final List<Integer> levels;
+    @Singular
+    private final List<Integer> srsStages;
+    private final Boolean unlocked;
+    private final Boolean started;
+    private final Boolean passed;
+    private final Boolean burned;
+    private final Boolean resurrected;
+    private final Boolean hidden;
+    private final ZonedDateTime createdAt;
+    private final ZonedDateTime availableBefore;
+    private final ZonedDateTime availableAfter;
 
-public class AssignmentsRequest implements Request {
-
-    private final String queryString;
-
-    public AssignmentsRequest(String queryString) {
-        this.queryString = queryString;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
+    @Override
     public String getQueryString() {
-        return queryString;
-    }
-
-    public static class Builder extends CollectionBuilder<AssignmentsRequest, Builder> {
-
-        private List<Integer> subjectIds = new ArrayList<>();
-        private List<String> subjectTypes = new ArrayList<>();
-        private List<Integer> levels = new ArrayList<>();
-        private List<Integer> srsStages = new ArrayList<>();
-        private Boolean unlocked;
-        private Boolean started;
-        private Boolean passed;
-        private Boolean burned;
-        private Boolean resurrected;
-        private Boolean hidden;
-        private ZonedDateTime createdAt;
-        private ZonedDateTime availableBefore;
-        private ZonedDateTime availableAfter;
-
-        public Builder subjectIds(Integer... ids) {
-            this.subjectIds = Arrays.asList(ids);
-            return this;
-        }
-
-        public Builder levels(Integer... levels) {
-            this.levels = Arrays.asList(levels);
-            return this;
-        }
-
-        public Builder subjectTypes(List<SubjectType> subjectTypes) {
-            this.subjectTypes = subjectTypes.stream().map(SubjectType::getName).collect(toList());
-            return this;
-        }
-
-        public Builder subjectTypes(SubjectType... subjectTypes) {
-            return subjectTypes(Arrays.asList(subjectTypes));
-        }
-
-        public Builder availableBefore(ZonedDateTime availableBefore) {
-            this.availableBefore = availableBefore;
-            return this;
-        }
-
-        public Builder availableBefore(Instant availableBefore) {
-            return availableBefore(availableBefore.atZone(ZoneOffset.UTC));
-        }
-
-        public Builder availableBefore(OffsetDateTime availableBefore) {
-            return availableBefore(availableBefore.toZonedDateTime());
-        }
-
-        public Builder availableAfter(ZonedDateTime availableAfter) {
-            this.availableAfter = availableAfter;
-            return this;
-        }
-
-        public Builder availableAfter(Instant availableAfter) {
-            return availableAfter(availableAfter.atZone(ZoneOffset.UTC));
-        }
-
-        public Builder availableAfter(OffsetDateTime availableAfter) {
-            return availableBefore(availableAfter.toZonedDateTime());
-        }
-
-        public Builder createdAt(ZonedDateTime createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(Instant createdAt) {
-            return createdAt(createdAt.atZone(ZoneOffset.UTC));
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            return createdAt(createdAt.toZonedDateTime());
-        }
-
-        public Builder srsStages(List<Integer> srsStages) {
-            this.srsStages = srsStages;
-            return this;
-        }
-
-        public Builder srsStages(Integer... srsStages) {
-            return srsStages(Arrays.asList(srsStages));
-        }
-
-        public Builder unlocked(Boolean unlocked) {
-            this.unlocked = unlocked;
-            return this;
-        }
-
-        public Builder started(Boolean started) {
-            this.started = started;
-            return this;
-        }
-
-        public Builder passed(Boolean passed) {
-            this.passed = passed;
-            return this;
-        }
-
-        public Builder burned(Boolean burned) {
-            this.burned = burned;
-            return this;
-        }
-
-        public Builder resurrected(Boolean resurrected) {
-            this.resurrected = resurrected;
-            return this;
-        }
-
-        public Builder hidden(Boolean hidden) {
-            this.hidden = hidden;
-            return this;
-        }
-
-        @Override
-        public AssignmentsRequest build() {
-            QueryString queryString = super.queryString()
-                .appendList("subject_ids", subjectIds)
-                .appendList("levels", levels)
-                .appendList("subject_types", subjectTypes)
-                .appendDate("created_at", createdAt)
-                .appendDate("available_before", availableBefore)
-                .appendDate("available_after", availableAfter)
-                .appendList("srs_stages", srsStages)
-                .append("unlocked", unlocked)
-                .append("started", started)
-                .append("passed", passed)
-                .append("burned", burned)
-                .append("resurrected", resurrected)
-                .append( "hidden", hidden);
-            return new AssignmentsRequest(queryString.toString());
-        }
+        return super.queryString()
+            .appendList("subject_ids", subjectIds)
+            .appendList("levels", levels)
+            .appendList("subject_types", subjectTypes)
+            .appendDate("created_at", createdAt)
+            .appendDate("available_before", availableBefore)
+            .appendDate("available_after", availableAfter)
+            .appendList("srs_stages", srsStages)
+            .append("unlocked", unlocked)
+            .append("started", started)
+            .append("passed", passed)
+            .append("burned", burned)
+            .append("resurrected", resurrected)
+            .append( "hidden", hidden)
+            .toString();
     }
 }

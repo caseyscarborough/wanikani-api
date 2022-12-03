@@ -1,49 +1,22 @@
 package com.wanikani.api.v2.request;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import lombok.Singular;
+import lombok.experimental.SuperBuilder;
+
 import java.util.List;
 
-public class ReviewsRequest implements Request {
+@SuperBuilder(toBuilder = true)
+public class ReviewsRequest extends CollectionRequest {
+    @Singular
+    private final List<Long> assignmentIds;
+    @Singular
+    private final List<Long> subjectIds;
 
-    private final String queryString;
-
-    public ReviewsRequest(String queryString) {
-        this.queryString = queryString;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
+    @Override
     public String getQueryString() {
-        return queryString;
-    }
-
-    public static class Builder extends CollectionBuilder<ReviewsRequest, Builder> {
-        private List<Long> assignmentIds = new ArrayList<>();
-        private List<Long> subjectIds = new ArrayList<>();
-
-        public Builder assignmentIds(Long... ids) {
-            this.assignmentIds = Arrays.asList(ids);
-            return this;
-        }
-
-        public Builder subjectIds(List<Long> ids) {
-            this.subjectIds = new ArrayList<>(ids);
-            return this;
-        }
-
-        public Builder subjectIds(Long... ids) {
-            return subjectIds(Arrays.asList(ids));
-        }
-
-        @Override
-        public ReviewsRequest build() {
-            QueryString queryString = super.queryString()
-                .appendList( "assignment_ids", assignmentIds)
-                .appendList( "subject_ids", subjectIds);
-            return new ReviewsRequest(queryString.toString());
-        }
+        return super.queryString()
+            .appendList( "assignment_ids", assignmentIds)
+            .appendList( "subject_ids", subjectIds)
+            .toString();
     }
 }

@@ -1,27 +1,11 @@
 package com.wanikani.api.v2.request;
 
-public class VoiceActorsRequest implements Request {
+import lombok.experimental.SuperBuilder;
 
-    private final String queryString;
-
-    public VoiceActorsRequest(String queryString) {
-        this.queryString = queryString;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
+@SuperBuilder(toBuilder = true)
+public class VoiceActorsRequest extends CollectionRequest {
+    @Override
     public String getQueryString() {
-        return queryString;
-    }
-
-    public static class Builder extends CollectionBuilder<VoiceActorsRequest, Builder> {
-
-        @Override
-        public VoiceActorsRequest build() {
-            QueryString queryString = super.queryString();
-            return new VoiceActorsRequest(queryString.toString());
-        }
+        return queryString().toString();
     }
 }
