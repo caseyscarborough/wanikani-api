@@ -18,11 +18,11 @@ public class ReviewStatisticsRequest extends CollectionRequest {
     @Override
     public String getQueryString() {
         return super.queryString()
-            .appendList( "subject_ids", subjectIds)
-            .appendList( "subject_types", subjectTypes)
-            .append( "percentages_greater_than", percentagesGreaterThan)
-            .append( "percentages_less_than", percentagesLessThan)
-            .append( "hidden", hidden)
+            .appendList("subject_ids", subjectIds)
+            .appendList("subject_types", subjectTypes)
+            .append("percentages_greater_than", percentagesGreaterThan)
+            .append("percentages_less_than", percentagesLessThan)
+            .append("hidden", hidden)
             .toString();
     }
 }

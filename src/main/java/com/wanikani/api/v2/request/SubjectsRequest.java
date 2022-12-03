@@ -19,10 +19,10 @@ public class SubjectsRequest extends CollectionRequest {
     @Override
     public String getQueryString() {
         return super.queryString()
-            .appendList( "types", types)
-            .appendList( "levels", levels)
-            .appendList( "slugs", slugs)
-            .append( "hidden", hidden)
+            .appendList("types", types)
+            .appendList("levels", levels)
+            .appendList("slugs", slugs)
+            .append("hidden", hidden)
             .toString();
     }
 }

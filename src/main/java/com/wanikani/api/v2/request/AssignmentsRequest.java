@@ -41,7 +41,7 @@ public class AssignmentsRequest extends CollectionRequest {
             .append("passed", passed)
             .append("burned", burned)
             .append("resurrected", resurrected)
-            .append( "hidden", hidden)
+            .append("hidden", hidden)
             .toString();
     }
 }

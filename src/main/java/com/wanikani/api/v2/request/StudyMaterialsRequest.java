@@ -16,9 +16,9 @@ public class StudyMaterialsRequest extends CollectionRequest {
     @Override
     public String getQueryString() {
         return super.queryString()
-            .append( "hidden", hidden)
-            .appendList( "subject_ids", subjectIds)
-            .appendList( "subject_types", subjectTypes)
+            .append("hidden", hidden)
+            .appendList("subject_ids", subjectIds)
+            .appendList("subject_types", subjectTypes)
             .toString();
     }
 }

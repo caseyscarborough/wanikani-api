@@ -15,8 +15,8 @@ public class ReviewsRequest extends CollectionRequest {
     @Override
     public String getQueryString() {
         return super.queryString()
-            .appendList( "assignment_ids", assignmentIds)
-            .appendList( "subject_ids", subjectIds)
+            .appendList("assignment_ids", assignmentIds)
+            .appendList("subject_ids", subjectIds)
             .toString();
     }
 }
